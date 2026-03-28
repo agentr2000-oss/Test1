@@ -18,7 +18,7 @@ This repository is a personal idea capture and planning tool. When the user desc
 
 - `/idea` — Capture a new idea from a conversational description
 - `/plan` — Expand an existing idea into a structured plan
-- `/review-plan` — Review an existing plan for quality and actionability
+- `/review_plan` — Review an existing plan for quality and actionability
 
 ## Behavior Guidelines
 
