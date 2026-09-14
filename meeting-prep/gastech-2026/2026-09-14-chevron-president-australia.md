@@ -13,6 +13,7 @@
 **Why it matters.** Gorgon is 15.6 mtpa across three trains (a). Jansz-Io Compression (~$4bn, FID 2021) was meant to arrest Jansz pressure decline from 2026; the company's own page now has commissioning from 2026 with start-up in 2027 or 2028 (a/c). Gorgon Stage 3 (Geryon and Eurytion, ~A$3bn) took FID in Dec 2025 with first gas 2028–29 (a/c). Remaining backfill inventory is Chandon, Chrysaor, Dionysus, Semele and West Tryal Rocks, plus the stranded Clio-Acme resource the DomGas Alliance wants developed (a/c). Nothing public says what train utilisation looks like between now and compression. The 2Q call's "volume uplift in the second half" is seasonal, not structural.
 
 **Key questions**
+
 - What Jansz production shortfall do you plan for in 2026–27 before compression, and is J-IC still inside the sanctioned cost and schedule envelope? What slipped it?
 - Will any Gorgon train run below nameplate for a sustained period before 2028, and what is the unit-cost consequence per tonne?
 - What are the FID gates for Chandon and Clio-Acme — NEPA approvals, JV alignment, the domgas share — and when?
@@ -27,6 +28,7 @@
 **Why it matters.** Cyclone Narelle (26–27 Mar) took one Gorgon train down briefly and damaged the Wheatstone platform and onshore plant; full Wheatstone production only resumed in late April (c). Gorgon plus Wheatstone is ~6.5% of world LNG and about half of WA domestic gas (c). Before that, the Wheatstone platform ran partly shut while Chevron investigated a pressure-vessel anomaly with NOPSEMA engaged (c, date unverified). No lost-volume or cost figure has been disclosed. The three enterprise agreements (Gorgon, Wheatstone platform, Wheatstone downstream) were approved in Oct 2023 after the Offshore Alliance strikes; expiry and renegotiation timing are unverified but fall inside a tight market. Chevron is also moving Perth engineering roles to its Bengaluru centre and cutting 15–20% of global headcount, with WA political scrutiny (c).
 
 **Key questions**
+
 - What volume and cost did Narelle and the platform anomaly take out in 1H26, and are any NOPSEMA directions still open?
 - What hardening is planned, and what does "a little bit of a volume uplift" in 2H actually mean in cargoes?
 - When do the three EBAs nominally expire, and will you bargain early to avoid a 2023-style dispute into a $25 JKM market?
@@ -41,6 +43,7 @@
 **Why it matters.** Most Gorgon/Wheatstone volume is on long-term contracts, primarily to Japan; February Wheatstone loadings were 10 cargoes to Japan and one to Thailand (c). Legacy Gorgon offtake per public databases is SK ~4.15 mtpa, JERA ~1.44, Osaka Gas ~1.375, Tokyo Gas ~1.1 [dated, unverified] (c). JERA is transferring its Gorgon equity to MidOcean but keeping offtake (a). His own view today — prices high for six months, Australia at a premium — and Asian imports at an eight-year low (c) frame the re-contracting debate. Chevron ranks Wheatstone as its lowest-return major asset on capex size (internal notes, 8 Sep), which makes the re-contracting slope the main value lever. Thailand's Energy Ministry wants ~5 MT of spot converted to term (see Gulf doc).
 
 **Key questions**
+
 - Which Gorgon and Wheatstone SPAs expire before 2030, with what volumes, and what slope and tenor are buyers offering at renewal versus the legacy book?
 - What share of 2026–27 volume is spot or short-term, and did the war change appetite for the next offtake tranche? (Carried from the Aug prep.)
 - What is being signed in Bangkok — Thai, Korean, Taiwanese counterparties — and is it Perth or Houston (Chevron Global Gas) that holds the pen and the P&L?
@@ -55,6 +58,7 @@
 **Why it matters.** Krishnamurthy has said Chevron HQ is "confused and frustrated" by ever-changing gas-reservation policy and that shifting fiscal settings are deterring new developments (c); Chevron told the Senate inquiry that a gas tax rise "risks prosperity" (a). The Senate Select Committee on Taxation of Gas Resources reported in May with no unanimous PRRT recommendation and a Greens push for a 25% export tax (c). The east-coast reservation scheme (20% domestic obligation from 1 Jul 2027) was softened on 10 Sep: the 20% becomes a regulator-set annual cap on a five-year demand forecast plus a 10% buffer, and the start moves to 1 Jan 2028 (c). The National EPA started 1 Jul 2026 with fossil-fuel actions excluded from the streamlined pathway (c). Chevron's own numbers: >A$80bn invested with partners, ~40% of WA domestic gas, A$16bn of taxes and royalties since 2022 (c).
 
 **Key questions**
+
 - Has Chevron changed its Australian hurdle rate or deferred any FID because of the 2026 policy churn — and does the 10 Sep softening change anything for WA?
 - Post-Hess, is Australia growth or harvest in Houston's ranking? Why does Wheatstone screen as your lowest-return major asset, and what would lift it?
 - What does "stability" concretely look like — a PRRT settlement, a domgas policy fixed to 2030, a NEPA timeline?
@@ -69,6 +73,7 @@
 **Why it matters.** Gorgon's approval condition is 80% injection of reservoir CO₂ on a five-year rolling average; only ~44% was achieved over FY20–FY24, with 1.33 Mt injected in FY24, the lowest on record (c). Chevron surrendered 5.23m offsets and funded ~A$40m for the first shortfall, and Argus reports ~2.3 Mt a year of offsets under the WA arrangement (c); FY25–26 injection and the current make-good terms are not public. WA Oil (Barrow Island) decommissioning is ~888 wells and ~1,500 km of pipelines from 2025–31 with a reported bill above A$2.3bn, after a Jul 2025 gas leak drew regulatory scrutiny (c). The Woodside swap — Chevron takes 13% of Wheatstone and 65% of Julimar-Brunello, gives 16.67% of NWS, NWS Oil and 20% of Angel CCS, pays $300m plus up to $100m contingent on Julimar Phase 3 — targets completion in 4Q26, conditional on approvals and Phase 3 start-up (a).
 
 **Key questions**
+
 - What did FY25–26 injection reach, is the water-offtake workaround working, and what is the run-rate offset cost? Is the WA arrangement being renegotiated for 2026 onward?
 - What is the current Barrow Island decommissioning estimate and phasing, and what changed after the 2025 leak?
 - Is Julimar Phase 3 on schedule for handover, which approvals are outstanding, and how does 77% of Wheatstone change equity marketing and domgas allocation?

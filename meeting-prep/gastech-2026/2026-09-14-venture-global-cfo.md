@@ -13,6 +13,7 @@
 **Why it matters.** FY26 EBITDA guidance is $8.7–9.1bn, raised twice from $5.2–5.8bn purely as the fee assumption on unsold cargoes moved with the curve ($5–6 → $12.50–13.50) (a). 91% of 2026 cargoes are contracted at a weighted-average fee of **$5.05** (a) — a blend of ~$2.66 Calcasieu tolls and short-term deals — against $12.50–13.50 on the 9% open; ±$1 = ±$180–210m (a). For 2027 the company gives a sensitivity of $650–700m per $1, i.e. ~13 mtpa open, but not the sold percentage or achieved fee (a/d). Consensus already models FY27 EPS −35% (b). Plaquemines Phase 1 COD (4Q26) and Phase 2 (mid-2027) convert the highest-margin volumes to tolls on management's own schedule, and Cheniere's CFO told us last week that ~100 mtpa of new supply "doesn't have a home".
 
 **Key questions**
+
 - What percentage of expected 2027 production is sold today, at what average fee, and how much of the 2027 sensitivity has been closed since 11 Aug?
 - What is the rule for selling the rest — a curve level, a share of volume, a hedge ratio? Do you hedge TTF/JKM directly or only through physical sales?
 - What 2027 EBITDA does the current forward curve imply on your own model, and how does that compare with the −35% EPS consensus?
@@ -27,6 +28,7 @@
 **Why it matters.** Long-term debt $41.5bn, cash $3.1bn at 30 Jun (a); ~$5.3bn refinanced since May for >$100m of annual interest savings (a); $2.25bn of senior secured holdco notes in June at 6.375% (2034) and 6.625% (2036) (a); and on 3 Sep a **$3.0bn 364-day senior secured revolver** for general purposes "including pre-FID spend on CP2 and Plaquemines expansions" (a). Nolan's framing was "a bit lower than 4x", but on what EBITDA base? Consolidated gross leverage is ~4.3x on peak merchant EBITDA and materially higher on a post-COD contracted base (d). Calcasieu Pass opco is BBB- at S&P but Ba1 at Moody's, explicitly on arbitration risk (a/c). Dividend raised 122% to $0.04 (record 15 Sep) (a).
 
 **Key questions**
+
 - Holdco versus project-level debt split today, and the target holdco leverage and consolidated leverage at end-2027 — measured on which EBITDA?
 - Why a 364-day facility for pre-FID capex: is it a bridge to a term financing at the Plaquemines expansion FID, and what happens if that FID slips past 1H27?
 - Interest expense run-rate after the refinancings; the maturity ladder 2027–29; covenant and DSCR tests at each project — where is the tightest one?
@@ -41,6 +43,7 @@
 **Why it matters.** The tribunal found for BP on liability on 8 Oct 2025; BP seeks at least $3.7bn and potentially more than $6bn plus interest and costs, with the damages hearing expected in 2026 (a/c). VG has reserved ~$27m plus $14–15m a quarter and frames residual exposure as capped at $765m (a). Repsol lost (Jan), Shell lost again in the New York court (Mar) and must pay VG's fees, Edison and Unipec settled on undisclosed terms, Orlen's hearing is late November, Galp is pending (c). Nolan: "two outstanding cases — end this year, one next year." The gap between the BP ask and the reserve is roughly a tenth of market cap.
 
 **Key questions**
+
 - What is accrued versus disclosed as "reasonably possible" in the 2Q 10-Q, and what is the legal basis for the $765m cap holding against a Reasonable-and-Prudent-Operator finding?
 - Were the Edison and Unipec settlements cash or in-kind — discounted future cargoes that now sit inside the $5.05 contracted fee?
 - If the BP award lands at $2bn or more in 2027: cash, cargoes or appeal — and does the $3bn revolver double as the liquidity backstop?
@@ -55,6 +58,7 @@
 **Why it matters.** Phase 1 COD is reaffirmed for 4Q26 and Phase 2 for mid-2027 (a), while VG holds a 15-month FERC construction extension request that lengthens the permissible commissioning window (c) and has written to Phase 2 buyers (ExxonMobil, Chevron, Petronas, Excelerate cited) this month promising deliveries on schedule at agreed prices (c). At guide marks a pre-COD cargo earns roughly five times the post-COD toll; each quarter of Phase 1 delay is worth on the order of $1bn of EBITDA [rough] (d). Commissioning-cargo proceeds and their accounting treatment (revenue versus capex offset) are the CFO's call.
 
 **Key questions**
+
 - What contractually defines COD under the Plaquemines SPAs — a sustained-performance test, an independent engineer certificate, or VG's election — and is the FERC extension contingency-only?
 - How are commissioning-cargo proceeds recognised: revenue, or an offset to capitalised cost? How much of FY26 EBITDA is commissioning-window volume?
 - Does the COD date trigger project-debt conversion, DSCR tests or reserve-account funding — and would an earlier COD ever be financially preferable?
@@ -69,6 +73,7 @@
 **Why it matters.** CP2 Phases 1–2 (>$23bn) were financed with no outside equity, Phase 2 with $8.6bn of project debt in March (a); the Plaquemines expansion (>58 mtpa peak for the complex) targets FID in 1H27 with first LNG 2029, and Baker Hughes was awarded the modular liquefaction and Cloud Connector compression on 13 Sep (a/c); CP2's uprate to 35 mtpa and a further ~620 Bcf/yr expansion authorisation are pending at DOE/FERC (a). Nolan: greenfield ~$1,000/t all-in; still $15bn of capex on the next project; peak capex in 24 months. Cheniere's CFO says people are "building at 12–14x capex/EBITDA" and that new-vintage tolls clear at $2.50–3.00. The long-term book is >46 mtpa after Hanwha's 1.5 mtpa (a); 5-year deals with Trafigura and Vitol were added in 1Q (a).
 
 **Key questions**
+
 - What contracted percentage and tenor mix will you require at the Plaquemines expansion FID — and is it higher than CP2 Phase 1's 64%? Will it follow the no-outside-equity template or sell down project stakes?
 - All-in cost per tonne for the expansion including the 6 bcf/d pipeline, and the capex/EBITDA multiple at a $2.50 toll versus a $5 five-year fee?
 - What is the funding plan for the next 24 months of peak capex — project debt, holdco notes, the revolver, retained merchant cash — in rough proportions?

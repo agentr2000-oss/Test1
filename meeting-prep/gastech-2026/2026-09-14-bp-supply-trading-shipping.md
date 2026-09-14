@@ -13,6 +13,7 @@
 **Why it matters.** 2Q26 underlying RC profit was $5.7bn, but BP's own RIM sensitivity explains ~90% of the Refining & Trading jump; the trading book itself was "average", with gas "benign" (a/d). That was the second consecutive quarter in which the group's biggest undisclosed engine failed to show up in a crisis tailor-made for it: Hormuz traffic is down ~95%, TTF is at its highest since 2022, JKM printed $24.82 on 10 Sep (c). The 4 Sep prep asked for trading to be disclosed as a reportable line from the 2027 reorganisation; management has not committed. BP moves ~11 mb/d of oil against ~1.1 mb/d of equity liquids, and ~27 mtpa of LNG (a).
 
 **Key questions**
+
 - Why was gas & power trading flat with JKM at $22 — structural length in the wrong basin, hedged supply, risk limits, or the LNG book simply being Atlantic-weighted while the dislocation was in the Gulf?
 - Roughly what share of 1H26 underlying PBIT came from trading versus the price tailwind, and what does a "normal" year contribute?
 - Has VaR or risk appetite changed under the new CEO and the two-segment structure? Who chairs the trading risk committee now?
@@ -27,6 +28,7 @@
 **Why it matters.** The portfolio target is 28 mtpa by 2030 from ~23 mtpa in 2023 (c). Supply legs: Tangguh 11.4 mtpa with domestic deliveries rising to 89 cargoes in 2026 (c); GTA at 2.7 mtpa nameplate, up to 36 cargoes in 2026 (c); Woodfibre fully reserved after a further 0.45 mtpa/15-yr tranche (c); Coral South at a 10–11% slope against ~12% market (a); Calcasieu Pass and Plaquemines offtake from Venture Global; Freeport. Demand legs added in Asia: KOGAS 0.7 mtpa/10 yr from 2028 (May 2026, BP's third KOGAS deal in four years, cited as diversification "amid Middle East-related disruption") (c); Torrent Power up to 0.41 mtpa 2027–36 via BP Singapore (c); Pavilion 0.8 mtpa (c). Thailand's Energy Ministry wants ~5 MT of spot converted to term (see Gulf doc). More than 90% of BP's cargoes are redirected before delivery (a).
 
 **Key questions**
+
 - Contracted versus spot split of the 2030 portfolio, and how much is destination-flexible?
 - What is being signed in Bangkok — Thai, Vietnamese, Bangladeshi or Indian counterparties, tenor, index? Are Asian buyers taking Henry Hub-linked supply now, or reverting to Brent slope?
 - Across the ~27 mtpa, what is the weighted oil slope, and how much of the book reprices before 2030? (Carried from the 4 Sep prep.)
@@ -41,6 +43,7 @@
 **Why it matters.** The ICC tribunal found on 8 Oct 2025 that VG failed to declare Calcasieu Pass COD in a timely manner and did not act as a Reasonable and Prudent Operator; the damages hearing was expected in 2026, with BP seeking at least $3.7bn and potentially more than $6bn plus interest and costs (a/c). VG reserves ~$27m plus $14–15m a quarter and frames remaining exposure as capped at $765m (a). VG's IR told us on 3 Sep that "we lost to BP one" with "two outstanding cases, end this year, one next year". VG is now re-running the commissioning-window model at Plaquemines — where BP is an offtaker — with a 15-month FERC extension request in hand, and wrote to Phase 2 buyers this month promising deliveries on schedule (c).
 
 **Key questions**
+
 - Has the damages hearing taken place, and when do you expect the award? Is BP open to a cargoes-not-cash settlement as Edison and Unipec took?
 - Is any amount recognised or disclosed as a contingent asset in the 2Q accounts?
 - How is Plaquemines performing against contract, and what is BP's read of "COD" there — a performance test, a certificate, or VG's election? Did BP obtain commissioning-duration limits or delay LDs in any newer US SPA?
@@ -55,6 +58,7 @@
 **Why it matters.** BP Shipping has ~300 owned and chartered ships on the water moving ~240 Mt a year (a). Hormuz transits collapsed to single digits a day in mid-August and US–Iran strikes intensified again on 7 Sep (c); Gulf cargoes are moving via ship-to-ship off Oman and the UAE at more than $1m and ~35 extra hours each (c). LNG spot charter rates are running ~2.7–2.8x year-on-year while the carrier orderbook exceeds half the fleet (c). Upstream, BP-operated Rumaila (~1.5 mb/d gross) was shut in from 3 Mar and 3Q production is guided down to 2,100–2,250 mboed; O'Neill said Kirkuk is less affected because TPAO gives access to the northern route (a, Aug notes).
 
 **Key questions**
+
 - What has war-risk cover and rerouting done to BP's freight cost per barrel and per MMBtu since March, and how much is passed through to customers?
 - What share of the LNG fleet is on long-term charter versus spot, and did BP fix length before rates tripled? Any 2026 newbuild, dual-fuel or ammonia/biofuel bunkering commitments?
 - Rumaila: what is the current gross and net rate, how many barrels have been rerouted versus deferred, and what did the alternative routes cost per barrel?
@@ -69,6 +73,7 @@
 **Why it matters.** Gas & power trading now reports inside Upstream, oil & products inside Downstream; S,T&S is "transversal" with no P&L (a). At the same time BP is selling nodes the trading book optimises: Gelsenkirchen (done), the UK North Sea (marketed), Archaea (marketed), Castrol 65% (~$6bn, pending India CCI), and farm-downs of Conifer and Tupinambá to Shell (a/c). The 4 Sep prep's question — which assets are load-bearing for trading — is unanswered. Skerry ran M&A for four years before taking the book, which cuts both ways: she knows what is for sale, and she may be there to sell.
 
 **Key questions**
+
 - Is there still one capital pool and one risk committee across oil and gas trading, or is it bifurcated by segment? How is transfer pricing set between the segments for optimisation value?
 - Which assets would BP not sell specifically because of what they do for trading — and what happens to the ~4ppt ROACE uplift as the chain gets shorter?
 - Is any part of S,T&S itself in scope — shipping assets, the power or carbon books, Asian marketing positions?

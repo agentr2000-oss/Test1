@@ -13,6 +13,7 @@
 **Why it matters.** IG adjusted earnings were $2.69bn in 2Q26 (group $9.84bn), up on "significantly stronger trading and optimisation results and higher realised prices" — a combined +$1,359m q/q (a). That is the second consecutive war-windfall quarter: the July prep put trading at roughly a third of group NOPAT in 1Q against a ten-year average contribution of ~2% of ROACE and a guided 2–4% (a/b). The window is finite — Shell itself says Ras Laffan repairs could run to 1Q27, and BNEF has pushed the LNG glut to 2028 (c) — yet the market is capitalising it: ADR at a record ~$97 after Morgan Stanley's upgrade on 12 Sep (b).
 
 **Key questions**
+
 - Of the 2Q IG step-up, what was T&O versus realised price versus LNG Canada volume? Even a rough split.
 - Which lever produced it — portfolio length into a $20+ TTF–Henry Hub spread, shipping and ship-to-ship logistics, storage, or re-optimisation around the Qatar force majeure? Which of those survives a reopened strait?
 - In a "boring" quarter — Hormuz open, contango flat, Qatar at capacity — what does IG T&O contribute: the bottom of the 2–4% ROACE band, or below it?
@@ -27,6 +28,7 @@
 **Why it matters.** Hormuz has been closed since 1–2 Mar; Ras Laffan was struck on 1 Mar and again on 18–19 Mar. QatarEnergy says two trains (~17% of capacity) are out for up to five years, and Shell says one of Pearl GTL's two trains needs about a year to repair (c). Shell's 3Q guide now excludes Qatar entirely (IG 570–630 kboe/d; liquefaction 7.1–7.7 MT) (a). Qatargas 4 (Shell 30%) kept running; cargoes are moving via ship-to-ship transfer off Oman and the UAE at more than $1m and ~35 extra hours each (c). Shell declared force majeure to customers while TotalEnergies rerouted and did not — the July prep's open coverage gap.
 
 **Key questions**
+
 - Are QG4 cargoes lifting via STS or through Hormuz today, and who carries the STS cost — the JV, Shell's book or the buyer?
 - What have Asian buyers asked for at renewal since the FM — price, reliability clauses, shorter tenor? Has any post-2027 roll-off negotiation opened early?
 - Is the Pearl GTL damage insured, and are war costs being carried inside Adjusted Earnings or in identified items? (Carried from the 13 Jul prep.)
@@ -41,6 +43,7 @@
 **Why it matters.** Phase 1 reached full capacity in 2Q (14 mtpa, more than 100 cargoes shipped) (a). Shell targets a Phase 2 FID by end-2026 — two more trains, doubling to ~28 mtpa (c). The Ottawa–BC co-operation pact (May) and the JV participants' incremental funding (1 May) are in place (c), and ARC Resources closed on 2 Sep, adding ~370 kboe/d of Montney gas that Shell says is FCF-accretive from 2027 (a). Management has never disclosed Phase 2's capex envelope or return hurdle, and it would be sanctioning 14 mtpa into the year BNEF now says the glut arrives. The 2026 bonus scorecard includes equity liquefaction volume (a) — an incentive to sanction.
 
 **Key questions**
+
 - What return hurdle and $/tonne does Phase 2 need to clear at FID, and is it tested on a Hormuz-normalised curve or today's?
 - Is Phase 2 electrified, and what does that do to cost and schedule? Is the Fluor scope fixed-price or reimbursable?
 - How much of Phase 2 offtake is contracted versus Shell portfolio, and is JV alignment (Petronas, PetroChina, Mitsubishi, KOGAS) complete?
@@ -55,6 +58,7 @@
 **Why it matters.** Shell's own LNG Outlook 2026 says 2026 trade is flat, about a fifth of monthly world supply has been shut in, term contracts are ~two-thirds of trade, and the average price paid in May was ~$11–12/MMBtu against $7–11 in January (a). Asian imports are at an eight-year low (c). Thailand's Energy Ministry wants ~5 MT of spot converted to term (see Gulf doc); Vietnam's first term SPA went to Shell Eastern Trading (0.4 MT/yr DES, 2027–31) (a); Pavilion brought ~6.5 mtpa of contracted supply (c); Ruwais adds up to 1 mtpa for 15 years from 4Q28 (a). The 4–5% LNG sales CAGR to 2030 (CMD, Mar 2025) now has to be delivered through a demand-destruction shock — and Prelude is in a "Turnaround 2026" restructuring (c).
 
 **Key questions**
+
 - What is Shell signing in Bangkok — with whom, what tenor, which index? Are Thai, Vietnamese and Bangladeshi buyers taking Brent slope, JKM-minus or Henry Hub-linked supply?
 - What is Shell's open, uncontracted length in 2028–30, and has the oil-indexed versus HH mix shifted in deals signed over the last 12 months?
 - 2025 sales were 73 MT. What is the 2026 outturn against the 4–5% CAGR, and which assets carry 2027–30 — LNG Canada, NFE/NFS, Ruwais, Manatee, HI gas?
@@ -69,6 +73,7 @@
 **Why it matters.** Shell lost the Calcasieu Pass commissioning-cargo arbitration (Aug 2025); on 3 Mar 2026 a New York court refused to vacate the award and ordered Shell to cover VG's legal fees (c). BP won its case, Repsol lost, Edison and Unipec settled. VG is re-running the commissioning-window model at Plaquemines and has asked FERC for a 15-month construction extension that lengthens the pre-COD window (c). Shell is a Calcasieu Pass offtaker and one of the largest holders of US HH-linked supply (c/d).
 
 **Key questions**
+
 - Has Shell changed commissioning-cargo, COD-definition or delay-damages clauses in any US SPA signed since the award? Did any seller refuse?
 - Is Shell still lifting from Calcasieu Pass, and does it hold any Plaquemines, CP2 or other US offtake carrying the same exposure?
 - What did the award and fees cost in identified items, and is any of it recoverable?

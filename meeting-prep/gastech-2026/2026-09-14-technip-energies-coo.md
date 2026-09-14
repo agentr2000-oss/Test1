@@ -13,6 +13,7 @@
 **Why it matters.** Two guidance cuts in three months. 30 Apr: PD revenue cut to €5.7–6.3bn (from €6.3–6.7bn), PD margin to 6.5–7.5% (from ~8%), €500–600m of revenue deferred to 2027–28, Middle East logistics and security running €30–40m a quarter; shares −9% (a/c). 30 Jul: H1 PD adjusted recurring EBITDA €118m (−45%), margin 4.3% vs 7.8%, group EBITDA €212m "after provisions", FY26 PD margin now "above 5%"; shares −14% to ~€28 (a/c). Cash held up — FCF €183m, 86% conversion ex-WC/provisions, gross cash a record €4.8bn (a) — so the question is whether the P&L hit is recoverable. The provision amount, its split by project, and the share under formal FM notices have not been disclosed.
 
 **Key questions**
+
 - Of the H1 provisions, how much is cost-to-complete versus liquidated-damages or claim exposure? How much sits under formal force-majeure notices, and which Gulf clients have granted schedule relief in writing?
 - What is the productivity recovery curve since 2Q at Ruwais (9.6 mtpa, ~$5.5bn EPC), NFE/NFS and Marsa — and is the €30–40m/quarter logistics cost still running?
 - What has to be true for PD margin to be back at 7–8% in 2027 — and is the "€800m-plus EBITDA company" framing from February still live, on what timeline?
@@ -27,6 +28,7 @@
 **Why it matters.** Iranian strikes on 18–19 Mar hit Ras Laffan Trains 4 and 6 (~17% of Qatar export capacity); QatarEnergy talks of three to five years to repair with two-to-four-year equipment lead times, and declared force majeure (c). Technip Energies mobilised a team to repair the trains (c). It is also the contractor on North Field East, North Field South and the two North Field West mega-trains (c). Bloomberg had NFE start-up slipping to end-2026 even before the strikes (c). One firm is now simultaneously repairing, building and competing for the same craft labour in the same complex.
 
 **Key questions**
+
 - Is the repair scope contracted as reimbursable services or lump-sum, and does it sit in the Services P&L? What is its rough size and duration?
 - Does repair work compete with NFE/NFS/NFW for labour, modules or engineering hours — and who decides the priority?
 - What is the current first-LNG date for NFE, and has QatarEnergy changed contracting terms (risk allocation, security costs, FM definitions) for NFW as a result of the war?
@@ -41,6 +43,7 @@
 **Why it matters.** H1 order intake was €12.7bn against €2.7bn a year earlier; backlog is a record €25bn (+50% since year-end); 75% of orders over 24 months are from outside the Middle East (a). The bull case is that the order drought of 2025 has reversed; the bear case is that early-stage mega-awards (Commonwealth LNG, Coral Norte, Blue Point) are booked at lower as-sold margins than the legacy Gulf portfolio and phase in slowly, while €500–600m of 2026 revenue has already slipped. Management has not disclosed backlog phasing by year or the as-sold margin of new awards. Worley, on the same floor, told investors 46% of its pipeline converts within 12 months — the same test applies here.
 
 **Key questions**
+
 - What share of 2027 PD revenue is already in backlog, and at what blended as-sold margin versus the legacy book?
 - Of the €12.7bn, how much is lump-sum turnkey versus reimbursable or EPCM — and has the mix shifted since the Gulf provisions?
 - What is the burn profile: how much of the €25bn converts in 2027 versus 2028 and beyond?
@@ -55,6 +58,7 @@
 **Why it matters.** Full notice to proceed on Commonwealth LNG on 15 May (9.5 mtpa, six SnapLNG trains, Cameron Parish) (a); Blue Point Number One ATR (>$1bn, 1.4 mtpa blue ammonia, production 2029) (a); and on 1 Sep a report that Technip Energies is bidding a potential $10bn liquid-methane propellant plant at SpaceX's Starbase Louisiana — a replica of the Commonwealth design with electric drive, wanted inside 36 months; shares +8% (c). Benchmarks from this month's meetings: Venture Global quotes ~$1,000/t all-in greenfield including pipeline and $1,400/t for typical Gulf Coast; Cheniere quotes $1,400/t for its latest project and says Bechtel is unlikely to work for anyone else (internal notes, Sep 2026). Gulf Coast craft labour and module-yard capacity are the constraint the market wants sized.
 
 **Key questions**
+
 - Which module yards are contracted for Commonwealth, and what share of the scope is modularised versus stick-built? What is the all-in $/tonne you are delivering against?
 - Could you execute the SpaceX plant concurrently with Commonwealth without diluting either — and would you take lump-sum on a first-of-a-kind propellant plant with a 36-month schedule?
 - How does SnapLNG compete with Baker Hughes' modular trains (Venture Global, Commonwealth's own equipment) and Bechtel's stick-built mega-trains on cost and schedule?
@@ -69,6 +73,7 @@
 **Why it matters.** Coral Norte FLNG EPCIC (Eni-led Mozambique Rovuma Venture; 3.6 mtpa; first gas 2H28; ~$7.2bn project; hull launched at Geoje in January) was booked as a "major" award in June (c); Yakaar-Teranga is targeting FID this year (c). On capital: gross cash €4.8bn, but a large part of an EPC contractor's cash is client advances; the €150m buyback was executed at an average €36.64 against a ~€28 share price today (a); Ecovyst's catalysts business ($556m) closed 2 Jan (c); Reju is building three recycling hubs with no disclosed return hurdle (c). The reorg also removed five ExCom members, including the CTO and Chief Business Officer.
 
 **Key questions**
+
 - How is risk shared with JGC and Samsung Heavy on Coral Norte versus Coral Sul, and is SHI hull capacity the binding constraint for a third FLNG?
 - Of the €4.8bn gross cash, how much is client advances and milestone prepayments versus free cash — and does Project Delivery need more bonding or guarantee capacity for a €25bn backlog?
 - What changed in bid governance and risk approval when the ExCom went from 11 to 8 — who signs off a lump-sum Gulf bid now?
