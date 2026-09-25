@@ -32,10 +32,10 @@ Drivers → Intent → Authority/Approval → Market signals → Award → Cash 
 |---|---|---|
 | Drivers | Conflict/geopolitical event data (GDELT, ACLED), supplemental requests | 6-24 mo |
 | Intent | President's Budget, FYDP out-years, P-1/R-1 line items, Unfunded Priorities Lists | 12-24 mo |
-| Authority | NDAA and appropriations markups, CRs, reprogrammings | 3-12 mo |
+| Authority | NDAA and appropriations markups, CRs, OMB apportionments, reprogrammings | 3-12 mo |
 | Market signals | SAM.gov RFIs / sources sought / presolicitations, agency acquisition forecasts, SBIR/DIU solicitations, DSCA arms-sale notifications, lobbying disclosures | 3-24 mo |
-| Award | USAspending / FPDS, DoD daily contract announcements, IDIQ ceilings, OTAs | 0 (the target) |
-| Cash | Daily Treasury Statement defense vendor payments, Monthly Treasury Statement outlays | lagging/coincident |
+| Award | DoD daily contract announcements (same day), USAspending / SAM.gov awards (90-day DoD delay), IDIQ ceilings, OTAs | 0 (the target) |
+| Cash | Daily Treasury Statement DoD cash withdrawals, Monthly Treasury Statement outlays | lagging/coincident |
 | Industry | Census M3 defense capital goods orders, Fed industrial production (defense & space), prime backlog / book-to-bill | coincident |
 
 ### India funnel (pilot #2)
@@ -88,4 +88,58 @@ Drivers → Intent → Authority/Approval → Market signals → Award → Cash 
 
 ## Related
 
-_Dataset links being verified — to be added._
+Links checked 2026-09-25 against live search results. Most .gov hosts were blocked from direct fetch in the sandbox, so a few are marked ⚠. Lead times are rough guesses to be tested in backtests.
+
+### US datasets
+
+**Heads-up, lots of things moved in 2025-26:** defense.gov is now war.gov (Comptroller is now comptroller.war.gov); FPDS was shut down (Feb 2026), so use the SAM.gov Contract Awards API; new FMS notifications moved from DSCA to State (Feb 2026); lda.senate.gov retired (June 2026), so use lda.gov.
+
+**Big structural trick:** DoD contract data in USAspending/FPDS is **delayed 90 days** for OPSEC. The daily contract announcements (≥$7.5M) are same-day, so they *lead* the official award data by ~3 months for free.
+
+Pipeline / pre-award (leading)
+
+| Source | Link | API | Signal | Lead |
+|---|---|---|---|---|
+| SAM.gov Contract Opportunities | [sam.gov/opportunities](https://sam.gov/opportunities) | [Opportunities API](https://open.gsa.gov/api/get-opportunities-public-api/) (key, 1k req/day) | Sources sought / RFIs / presolicitations, filter by DoD office + NAICS/PSC | RFIs ~6-18 mo; presol ~1-3 mo |
+| DoD component acquisition forecasts | [DoD OSBP forecasts (archived)](https://business.defense.gov/Archived-Pages/Acquisition-Forecasts/), [Air Force](https://www.airforcesmallbiz.af.mil/Small-Business/Acquisition-Forecasts/), [DLA demand forecast](https://www.dla.mil/Acquisition/Industry-Engagement-and-Analysis/Demand-Forecast/) | – | Planned buys by component | 6-24 mo |
+| GSA Acquisition Gateway forecast | [acquisitiongateway.gov/forecast](https://acquisitiongateway.gov/forecast) | none yet | ⚠ DoD reportedly doesn't participate (civilian agencies only) | – |
+| DoD budget (P-1 / R-1 / FYDP) | [comptroller.war.gov/Budget-Materials](https://comptroller.war.gov/Budget-Materials/) | – | Program-level request, 5-yr FYDP | 6-18 mo (FYDP 1-5 yrs) |
+| DoD reprogrammings | [Reprogramming FY2026](https://comptroller.war.gov/Budget-Execution/ReprogrammingFY2026/) | – | Money being moved mid-year, clusters at FY-end | weeks-3 mo |
+| OMB apportionments | [apportionment-public.max.gov](https://apportionment-public.max.gov/), [OpenOMB](https://openomb.org/) | – | OMB must approve before DoD can obligate; posted within 2 days, footnotes show holds | days-weeks |
+| Congress.gov (NDAA / approps) | [api.congress.gov](https://api.congress.gov/) | [docs](https://github.com/LibraryOfCongress/api.congress.gov) | Marks, bill status, plus-ups | 3-12 mo |
+| Lobbying (LDA) | [lda.gov](https://lda.gov/system/public/) | [lda.gov/api/v1](https://lda.gov/api/redoc/v1/) | Issue codes DEF/BUD, bill mentions | weak, 6-18 mo |
+| Foreign Military Sales notifications | [State Dept (current)](https://www.state.gov/arms-sales-congressional-notifications), [DSCA archive](https://www.dsca.mil/Press-Media/Major-Arms-Sales) | also in Federal Register | Proposed foreign sales | LOA 1-12 mo; contracts 6-24 mo |
+| SBIR/STTR | [sbir.gov/api](https://www.sbir.gov/api), [DoD topics](https://www.dodsbirsttr.mil/topics-app/) | yes | Topic counts by tech area (new topics monthly) | 4-9 mo |
+| DIU / AFWERX | [DIU open solicitations](https://www.diu.mil/work-with-us/open-solicitations), [AFWERX SBIR](https://afwerx.com/divisions/sbir-sttr/) | – | Rapid-prototype demand | 2-4 mo |
+| Federal Register | [federalregister.gov](https://www.federalregister.gov/) | [API v1](https://www.federalregister.gov/developers/documentation/api/v1) (no key) | DFARS rules, arms-sale notices | weeks-months |
+
+Award / cash (coincident: the thing we're predicting)
+
+| Source | Link | API | Notes |
+|---|---|---|---|
+| DoD daily contract announcements | [war.gov/News/Contracts](https://www.war.gov/News/Contracts/) | scrape | Same day, ≥$7.5M, leads USAspending by ~90 days |
+| USAspending | [usaspending.gov](https://www.usaspending.gov/) | [api.usaspending.gov](https://api.usaspending.gov/docs/endpoints) | Awards, IDV ceilings vs obligations (headroom!), subawards. DoD delayed 90 days |
+| SAM.gov Contract Awards (FPDS replacement) | – | [Contract Awards API](https://open.gsa.gov/api/contract-awards/) | Same 90-day DoD delay |
+| Daily Treasury Statement | [fiscaldata DTS](https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/) | [API docs](https://fiscaldata.treasury.gov/api-documentation/) | Daily DoD cash withdrawals, T+1. ⚠ line appears as "Dept of Defense (DoD) - misc" now (was "Defense Vendor Payments (EFT)"), so check the exact `transaction_catg` |
+| Monthly Treasury Statement | [fiscaldata MTS](https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/) | same | Monthly DoD outlays |
+| GAO bid protests | [gao.gov bid protest search](https://www.gao.gov/legal/bid-protests/search) | – | Protest spikes = big awards landing; delays award up to 100 days |
+| GAO Weapon Systems Assessment | [GAO-26-108457](https://www.gao.gov/products/gao-26-108457) | – | Annual program health |
+
+Macro / industry
+
+| Source | Link | Notes |
+|---|---|---|
+| Census M3 defense capital goods | FRED [ADEFNO](https://fred.stlouisfed.org/series/ADEFNO) (new orders), [ADEFUO](https://fred.stlouisfed.org/series/ADEFUO) (backlog), [ADEFVS](https://fred.stlouisfed.org/series/ADEFVS) (shipments), [ADAPNO](https://fred.stlouisfed.org/series/ADAPNO) (defense aircraft orders) | Monthly, ~18 working days after month-end. Orders lead shipments |
+| Fed industrial production: defense & space | FRED [IPB52300S](https://fred.stlouisfed.org/series/IPB52300S) | Monthly |
+| Shipbuilding jobs | FRED [CES3133660001](https://fred.stlouisfed.org/series/CES3133660001) | Hiring leads shipments 1-3 qtrs |
+| SEC EDGAR | [EDGAR APIs](https://www.sec.gov/search-filings/edgar-application-programming-interfaces), [full-text search](https://efts.sec.gov/LATEST/search-index?q=%22munitions%20capacity%22) | Prime backlog / RPO, 8-K contract wins; supplier text mining ("undefinitized", "multiyear", "book-to-bill") |
+| SIPRI | [Milex DB](https://www.sipri.org/databases/milex), [Arms Transfers DB](https://armstransfers.sipri.org/) | Annual, lagging, for context |
+| Cleared jobs | [ClearanceJobs hiring trends](https://about.clearancejobs.com/employers/learn-more/hiring-trends) | ⚠ reports only, no public dataset |
+| GDELT / ACLED (drivers) | [GDELT data](https://www.gdeltproject.org/data.html), [ACLED API](https://acleddata.com/acled-api-documentation) | Conflict and event signals behind supplementals and FMS |
+| Satellite imagery | [Copernicus Data Space APIs](https://dataspace.copernicus.eu/analyse/apis) | Free Sentinel-1/2 of ammo plants (Holston, Radford, Scranton, Mesquite) and shipyards. Cross-check against the MILCON budget |
+
+US context right now (Sept 2026): the House passed the FY27 NDAA (H.R. 8800) on 7/22 and the Senate bill is stalled, so a CR (and its new-start limits) looks likely. SBIR lapsed from 10/1/2025 to 4/13/2026 (P.L. 119-83), so SBIR data in that window is depressed.
+
+### India datasets
+
+_India links still being verified, to be added._
