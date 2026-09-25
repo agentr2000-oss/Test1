@@ -17,3 +17,6 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Tracker API download cache
+data/preclinical-tools-spend/auto/cache/
