@@ -43,25 +43,31 @@ Drivers → Intent → Authority/Approval → Market signals → Award → Cash 
 | Stage | What to watch | Rough lead |
 |---|---|---|
 | Drivers | Border incidents / conflict (e.g. post-Operation Sindoor emergency buys) | 3-24 mo |
-| Intent | Union Budget MoD capital outlay (BE vs RE), Standing Committee on Defence "projected vs allocated" gaps | 12+ mo |
+| Intent | Union Budget MoD capital outlay (BE vs RE), Standing Committee on Defence "projected vs allocated" gaps and % already committed | 12+ mo |
 | Approval | Defence Acquisition Council (DAC) Acceptance of Necessity (AoN) approvals, Cabinet Committee on Security clearances | 1-5 yrs (!) |
-| Market signals | Tenders/RFPs on the MoD e-procurement portal and CPPP, GeM, iDEX challenges, Positive Indigenisation Lists (SRIJAN) | 6-36 mo |
-| Contract | MoD contract-signing press releases, DPSU/listed-company order-win filings on BSE/NSE | 0 (the target) |
+| Market signals | Army/Navy/IAF RFIs, tenders on the MoD e-procurement portal and CPPP, iDEX challenges, Positive Indigenisation List embargo dates (SRIJAN), "L1 bidder" / LoI exchange filings | weeks-36 mo |
+| Contract | MoD contract-signing press releases, DPSU/listed-company order-win filings on BSE/NSE, GeM orders | 0 (the target) |
 | Cash | Controller General of Accounts monthly accounts (defence capex) | lagging/coincident |
 | Industry | DPSU order books (HAL, BEL, BDL, Mazagon, GRSE, Cochin...), defence production and export stats, Nifty India Defence index | coincident |
 
 ### Clever / non-obvious angles
 
 - **AoN → contract conversion rate (India).** DAC approves huge rupee numbers, but only some of it gets contracted, and years later. Text-mine every PIB DAC release into a dataset (date, ₹ value, platform, service, Buy category), then match to later contract signings. The "unconverted AoN backlog" is basically a future-orders pipeline.
+- **"L1 bidder" filings (India).** Listed defence companies file to BSE/NSE when they're declared lowest bidder or get a Letter of Intent, weeks to months before the contract is signed. A simple keyword filter on exchange announcements ("L1", "Letter of Intent", "lowest bidder") could be a near-free early-warning feed.
+- **Budget already committed (India).** The Standing Committee reports show how much of each service's capital budget is already locked in by past contracts (e.g. the Navy had ~74% committed for FY27). When that share is high, there's little room for new contracts that year; when it drops, new signings can open up.
+- **DPSU management guidance.** BEL, HAL and others guide on order *inflow* for the next 1-2 years in earnings calls. It's management's own view of the pipeline, so track guidance vs. what actually lands.
+- **The 90-day DoD delay (US).** Official DoD award data is held back 90 days, but the daily contract announcements are same-day. Scraping those gives you a 3-month head start over anyone relying on USAspending.
+- **OMB apportionments (US).** Money can't be obligated until OMB approves how it's released, and those approvals are posted publicly within ~2 days. That's especially useful right after a CR ends or a bill is enacted.
 - **IDIQ ceiling headroom (US).** Ceiling minus obligated-to-date on big IDIQ vehicles = pre-authorised spend waiting to be drawn down as task orders.
 - **Sources-sought / RFI counts by NAICS (US).** e.g. 336414 guided missiles, 332993 ammunition, 336611 shipbuilding. A spike in RFIs in a category comes before the awards.
-- **Foreign Military Sales notifications.** DSCA notifies Congress of proposed sales well before the LOA and contracts, so it's a clean export-demand lead.
+- **Foreign Military Sales notifications.** State/DSCA notify Congress of proposed sales well before the LOA and contracts, so it's a clean export-demand lead. It also works as a cross-country signal: US notices for India (Javelin, Excalibur, etc.) are an India import lead.
 - **Sub-award data.** FFATA subawards in USAspending show who's getting money *under* the primes, i.e. the supply chain ramping.
 - **Supplier chatter.** NLP on Tier-2/3 supplier earnings calls and filings (castings, energetics, electronics) for "defense" mentions and capacity adds. They see demand before the primes' numbers move.
 - **Hiring.** Cleared-job postings in the US; DPSU / shipyard recruitment notices in India.
 - **Physical signals.** Satellite imagery (Sentinel-2 is free) of shipyards and ammo plants, e.g. new buildings, dry dock activity, parking lot fill.
 - **Language shift.** Track words like "urgent", "surge", "emergency procurement" or "rapid" in solicitations and press releases as a regime-change flag.
 - **Bid protests (US).** A spike in GAO protests in a category means large competitive awards were just made or are about to be re-made.
+- **Trials → orders (India).** DRDO tech transfers and PIB "successfully flight-tested" releases come 1-3 years before production orders.
 - **Parliament Q&A (India).** Lok Sabha / Rajya Sabha answers often reveal contract status, delays and trial stages that aren't announced anywhere else.
 
 ### Gotchas
@@ -70,11 +76,14 @@ Drivers → Intent → Authority/Approval → Market signals → Award → Cash 
 - **Headline vs. real money.** US IDIQ ceilings and India AoN values are *potential* spend, not actual. They're heavily inflated, so conversion rates matter more than headline numbers.
 - **Classified / black budget.** Some US spending just won't show up. Track the unclassified part and treat the gap as a known unknown.
 - **India data is messy.** It's mostly PIB press releases, PDFs and exchange filings, not APIs. Expect a lot of scraping and LLM extraction ("pull rupee value, platform, service, vendor out of this press release").
-- **Continuing resolutions (US)** delay new-start programs, which breaks lag assumptions in CR years.
+- **Continuing resolutions (US)** delay new-start programs, which breaks lag assumptions in CR years. FY27 looks like a CR year.
+- **Numbers don't always agree (India).** Different MoD/PIB releases give different AoN totals for the same year, so keep the source document next to every row.
+- **Rules are changing (India).** A new Defence Acquisition Procedure (DAP-2026) is in draft or just finalised, so procurement timelines and categories may shift.
 
 ### MVP sketch
 
-- Pick 4-5 signals per country that are easy to pull (US: SAM.gov opportunities, USAspending, Daily Treasury Statement, DSCA notifications, M3 defense orders; India: PIB DAC/AoN releases, CGA monthly capex, DPSU order-win filings, defproc tenders, Standing Committee reports).
+- Pick 4-5 signals per country that are easy to pull. US: DoD daily contract announcements, SAM.gov sources sought by NAICS, Daily Treasury Statement DoD line, FMS notifications, FRED ADEFNO/ADEFUO. India: PIB DAC/AoN releases, BSE order and "L1" filings, CGA monthly accounts, Standing Committee reports, service RFI pages.
+- First concrete build: an **India AoN ledger**. Scrape every DAC release since ~2018 into rows, match each to later contract signings, and compute the conversion rate and lag. Nobody publishes this.
 - Weekly scraper → SQLite/DuckDB → simple dashboard.
 - Backtest: does signal X lead obligations/outlays Y? (cross-correlation / lead-lag, maybe Granger). Keep the ones that actually lead.
 - LLM layer to turn unstructured press releases and filings into rows (value, platform, service, vendor, stage).
@@ -142,4 +151,51 @@ US context right now (Sept 2026): the House passed the FY27 NDAA (H.R. 8800) on 
 
 ### India datasets
 
-_India links still being verified, to be added._
+**Heads-up:** India has almost no APIs. It's PIB press releases, PDFs and exchange filings, so this is a scraping + LLM-extraction job. PIB can't be filtered by ministry via URL; use the MoD's own press-release page or the PIB archive.
+
+Pipeline / pre-contract (leading)
+
+| Source | Link | Access | Signal | Lead |
+|---|---|---|---|---|
+| DAC AoN approvals (via PIB) | [PIB all releases](https://pib.gov.in/Allrel.aspx?reg=3&lang=1), [MoD press releases](https://mod.gov.in/press-releases-ministry-defence), [PIB archive by ministry](https://archive.pib.gov.in/archive/phase2/archiveministry.aspx) | [PIB RSS](https://pib.gov.in/ViewRss.aspx?reg=3&lang=1) (not split by ministry); community scraper [PIB-Direct](https://github.com/jyotishman888/PIB-Direct) | ₹ value of approved proposals, ~6-10 meetings/yr. **No official dataset, so this is the thing to build** | Rules say ~74-106 weeks; really 2-5+ yrs |
+| CCS approvals | via PIB / press | – | Final sign-off on big-ticket deals | weeks |
+| MoD e-procurement | [defproc.gov.in latest tenders](https://defproc.gov.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page) | scrape | Tender counts/values (mostly revenue + smaller capital) | 1-6 mo |
+| Central Public Procurement Portal | [eprocure.gov.in/cppp](https://eprocure.gov.in/cppp/), [etenders.gov.in](https://etenders.gov.in/) | scrape | Same, for other central bodies | 1-6 mo |
+| Service RFIs | [Army](https://indianarmy.nic.in/Tenderrfi/RFI), [Navy](https://indiannavy.gov.in/content/requests-information-rfi), [IAF](https://indianairforce.nic.in/rfp-rfi-eoi-and-cumulative-details-of-rfp/) | scrape | Earliest public sign of a requirement | 1-5 yrs |
+| iDEX / DRDO TDF | [idex.gov.in](https://idex.gov.in/), [TDF](https://tdf.drdo.gov.in/) | – | Challenge topics = which tech is coming (small ₹) | 2-5 yrs |
+| SRIJAN / Positive Indigenisation Lists | [srijandefence.gov.in](https://srijandefence.gov.in/) | PDFs | Import embargo dates force domestic orders (6th list Aug 2026: 405 items) | 1-3 yrs to embargo date |
+| Make-I / Make-II | [makeinindiadefence.gov.in](https://makeinindiadefence.gov.in/) | – | Prototype approvals / EoIs | 2-4 yrs |
+| DRDO tech transfers | [DRDO ToT](https://drdo.gov.in/drdo/en/offerings/transfer-of-technologies) | – | Tech handed to industry | 1-3 yrs |
+| Standing Committee on Defence | [Sansad committee page](https://sansad.in/ls/committee/departmentally-related-standing-committees/7-defence), [PRS summaries](https://prsindia.org/parliamentary-committees/defence) | PDFs, annual (~March) | Service-wise projected vs allocated capex, committed liabilities | 0-12 mo |
+| Parliament questions | [Lok Sabha Q&A](https://sansad.in/ls/questions/questions-and-answers), [Rajya Sabha Q&A](https://sansad.in/rs/questions/questions-and-answers) | faceted search | Contract/AoN counts, delays | explanatory |
+| US arms-sale notices for India | [DSCA India tag](https://www.dsca.mil/Press-Media/Major-Arms-Sales/Tag/45781/india) (+ State Dept for 2026 on) | – | Proposed US sales to India | months |
+| Procurement rules | [DAP-2020](https://ddpmod.gov.in/sites/default/files/2024-02/dap-2020-11-nov-21_0_0.pdf), [Draft DAP-2026](https://mod.gov.in/sites/default/files/DRAFT-DAP-2026_0.pdf), [DFPDS-2026](https://mod.gov.in/dod/sites/default/files/DFPDS-2026.pdf) | – | Regime changes. ⚠ not sure DAP-2026 is final yet | – |
+
+Budget / cash (coincident)
+
+| Source | Link | Notes |
+|---|---|---|
+| Union Budget | [indiabudget.gov.in](https://www.indiabudget.gov.in/), [Capital Outlay on Defence Services (Demand 21)](https://www.indiabudget.gov.in/doc/eb/sbe21.pdf), [PRS budget analysis](https://prsindia.org/) | Annual (Feb 1), BE vs RE |
+| Controller General of Accounts | [Monthly dashboard](https://cga.nic.in/MonthDashboardReport/Published/list.aspx), [Monthly accounts review](https://cga.nic.in/Page/Monthly-Accounts-Review.aspx) | Monthly, ~1 mo lag. ⚠ press reports ministry-wise capex from CGA data, but need to confirm which statement has the defence line |
+| GeM | [gem.gov.in/view_contracts](https://gem.gov.in/view_contracts) | MoD is GeM's biggest buyer; no bulk API |
+| MoD Annual Report | [mod.gov.in annual reports](https://mod.gov.in/documents/annual-report), [FY26 report](https://mod.gov.in/sites/default/files/Annual-report-2025-26.pdf) | Contracts signed, programme status |
+| CAG defence audits | [cag.gov.in defence](https://cag.gov.in/defence/new-delhi/en/audit-report), [data.gov.in](https://data.gov.in/catalog/cag-union-audit-reports) | Lags 2-3 yrs, good for cost overruns and delays |
+| Dept of Defence Production | [ddpmod.gov.in](https://ddpmod.gov.in/en), [data.gov.in production & exports](https://data.gov.in/catalog/defence-production-and-export), [defenceexim.gov.in](https://defenceexim.gov.in/) | Annual production and exports |
+
+Company / market
+
+| Source | Link | Notes |
+|---|---|---|
+| BSE announcements | [bseindia.com announcements](https://www.bseindia.com/corporates/ann.html) | Unofficial JSON API behind the page; Python wrapper [BseIndiaApi](https://github.com/BennyThadikaran/BseIndiaApi). Filter for "order", "L1", "Letter of Intent" |
+| NSE announcements | [nseindia.com filings](https://www.nseindia.com/companies-listing/corporate-filings-announcements) | Needs session cookies; wrapper [NseIndiaApi](https://github.com/BennyThadikaran/NseIndiaApi). ⚠ API path not confirmed |
+| Nifty India Defence index | [niftyindices.com](https://www.niftyindices.com/indices/equity/thematic-indices/nifty-india-defence) | Market-implied, reacts same day to DAC news (equal-weight version launched Aug 2026) |
+| Trade data | [TradeStat (Commerce)](https://tradestat.commerce.gov.in/eidb/commodity_wise_all_countries_import), [UN Comtrade](https://comtradeplus.un.org/) ([API](https://comtradedeveloper.un.org/)) | HS 93 arms; aircraft (88) and ships (89) sit elsewhere, and govt imports are patchy |
+| SIPRI arms transfers | [armstransfers.sipri.org](https://armstransfers.sipri.org/) | Annual. India #2 importer 2021-25 (8.2% of global). Has order year, not just deliveries |
+| Satellite imagery | [Copernicus Browser](https://browser.dataspace.copernicus.eu/) | Shipyards (Mazagon, GRSE, Cochin). Tracks deliveries more than contracts |
+
+India context right now (from PIB releases):
+- **FY26 was a record year:** 109 AoNs worth ₹6.81 lakh cr vs 503 contracts worth ₹2.28 lakh cr (~1:3). The capital budget was fully spent, and MoD credits the needs after Operation Sindoor ([PIB 2247977](https://pib.gov.in/PressReleasePage.aspx?PRID=2247977)). ⚠ Another report gives 55 AoNs / ₹6.73 lakh cr.
+- **FY27 budget:** MoD ₹7.85 lakh cr (+15%), capital ₹2.19 lakh cr (~+22%) ([PIB 2222601](https://pib.gov.in/PressReleasePage.aspx?PRID=2222601)).
+- **2026 DAC meetings:** 12 Feb ₹3.60 lakh cr; 27 Mar ₹2.38 lakh cr ([PIB 2246125](https://pib.gov.in/PressReleasePage.aspx?PRID=2246125)); 3 Jul ~₹52k cr; 7 Sep ~₹1.10 lakh cr.
+- **FY26 production / exports:** ₹1.78 lakh cr ([PIB 2273824](https://pib.gov.in/PressReleasePage.aspx?PRID=2273824)) / ₹38,424 cr ([PIB 2248124](https://pib.gov.in/PressReleasePage.aspx?PRID=2248124)).
+- **Post-Sindoor emergency procurement (EP-6):** reportedly capped around ₹40k cr, with contracts to close within 40 days. ⚠ Press reports only, not on PIB.
