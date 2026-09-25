@@ -462,8 +462,12 @@ def cmd_check(_args):
             problems.append(f"{where}: needs value or value_text")
         if not (r.get("source_url") or "").startswith("http"):
             problems.append(f"{where}: missing source_url")
+    have = {r["indicator_id"] for r in load_all_observations()}
+    gaps = [i for i in cat if i not in have]
     for p in problems:
         print(p)
+    if gaps:
+        print(f"{len(gaps)} catalog indicator(s) with no data yet: {', '.join(gaps)}")
     print(f"{len(problems)} problem(s)")
     return 1 if problems else 0
 
@@ -475,12 +479,21 @@ def cmd_latest(_args):
         d = parse_date(r.get("period_end"))
         if d and (r.get("value") or r.get("value_text")):
             by_ind[r["indicator_id"]].append((d, r))
+    def pick(rows):
+        """First numeric row in file order; the file lists the preferred source first."""
+        return next((r for r in rows if to_float(r.get("value")) is not None), rows[0])
+
     out = []
     for ind, items in by_ind.items():
-        items.sort(key=lambda t: t[0])
-        d, cur = items[-1]
-        prev = next((r for pd, r in reversed(items[:-1])
-                     if pd < d and r.get("unit") == cur.get("unit") and to_float(r.get("value")) is not None), None)
+        d = max(pd for pd, _ in items)
+        same = [r for pd, r in items if pd == d]
+        cur = pick(same)
+        earlier = [(pd, r) for pd, r in items
+                   if pd < d and r.get("unit") == cur.get("unit") and to_float(r.get("value")) is not None]
+        prev = None
+        if earlier:
+            pd_prev = max(pd for pd, _ in earlier)
+            prev = pick([r for pd, r in earlier if pd == pd_prev])
         change = ""
         if prev and to_float(cur.get("value")) is not None:
             change = fmt_num(to_float(cur["value"]) - to_float(prev["value"]))
@@ -490,7 +503,8 @@ def cmd_latest(_args):
             "period": cur["period"], "period_end": cur["period_end"], "value": cur.get("value", ""),
             "unit": cur.get("unit", ""), "value_text": cur.get("value_text", ""),
             "prev_period": prev["period"] if prev else "", "prev_value": prev["value"] if prev else "",
-            "change_vs_prev": change, "read_as": meta.get("read_as", ""), "source_url": cur.get("source_url", ""),
+            "change_vs_prev": change, "rows_same_period": len(same), "read_as": meta.get("read_as", ""),
+            "source_url": cur.get("source_url", ""),
         })
     out.sort(key=lambda r: (r["channel"], r["indicator_id"]))
     with open(LATEST_CSV, "w", newline="") as f:
