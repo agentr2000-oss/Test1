@@ -1,0 +1,1084 @@
+<title>Preclinical Tools Monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --plane: #f3f5f5;
+  --surface: #fcfdfd;
+  --ink: #0f1719;
+  --ink-2: #4a565a;
+  --muted: #7a8588;
+  --grid: #e3e7e7;
+  --axis: #c3cbcc;
+  --border: rgba(15, 23, 25, 0.10);
+  --accent: #0d6b82;
+  --accent-wash: rgba(13, 107, 130, 0.08);
+  --series-1: #2a78d6;
+  --series-1-soft: #9ec5f4;
+  --series-2: #eb6834;
+  --series-neg: #e34948;
+  --mark-muted: #bcc4c6;
+  --good: #0ca30c;
+  --good-text: #006300;
+  --warn: #fab219;
+  --warn-text: #8a5a00;
+  --bad-text: #b3302f;
+  --neu: #eceeee;
+  --pos-1: #dbe9fb; --pos-2: #9ec5f4; --pos-3: #3987e5; --pos-4: #1c5cab;
+  --neg-1: #fbdcda; --neg-2: #f3a3a0; --neg-3: #e34948; --neg-4: #b3302f;
+  --cell-ink-1: #0f1719; --cell-ink-2: #0f1719; --cell-ink-3: #ffffff; --cell-ink-4: #ffffff;
+  --ladder-1: #d6e6f8; --ladder-2: #b7d3f6; --ladder-3: #86b6ef; --ladder-4: #0f1719;
+  --ladder-ink: #0f1719; --ladder-ink-4: #ffffff;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cond: "IBM Plex Sans Condensed", "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane: #0c1011; --surface: #151a1c; --ink: #eef3f4; --ink-2: #b8c2c4; --muted: #86918f;
+    --grid: #252c2e; --axis: #3a4346; --border: rgba(255, 255, 255, 0.10);
+    --accent: #5cc0d6; --accent-wash: rgba(92, 192, 214, 0.10);
+    --series-1: #3987e5; --series-1-soft: #1f4f8a; --series-2: #d95926; --series-neg: #e66767; --mark-muted: #465155;
+    --good-text: #0ca30c; --warn-text: #fab219; --bad-text: #e66767; --neu: #262d2f;
+    --pos-1: #16304f; --pos-2: #1d4f8c; --pos-3: #3987e5; --pos-4: #86b6ef;
+    --neg-1: #4a1f1f; --neg-2: #8a2f2e; --neg-3: #e34948; --neg-4: #f09b98;
+    --cell-ink-1: #eef3f4; --cell-ink-2: #eef3f4; --cell-ink-3: #ffffff; --cell-ink-4: #0f1719;
+    --ladder-1: #16304f; --ladder-2: #1d4f8c; --ladder-3: #2a6cc0; --ladder-4: #eef3f4;
+    --ladder-ink: #eef3f4; --ladder-ink-4: #0f1719;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --plane: #0c1011; --surface: #151a1c; --ink: #eef3f4; --ink-2: #b8c2c4; --muted: #86918f;
+  --grid: #252c2e; --axis: #3a4346; --border: rgba(255, 255, 255, 0.10);
+  --accent: #5cc0d6; --accent-wash: rgba(92, 192, 214, 0.10);
+  --series-1: #3987e5; --series-1-soft: #1f4f8a; --series-2: #d95926; --series-neg: #e66767; --mark-muted: #465155;
+  --good-text: #0ca30c; --warn-text: #fab219; --bad-text: #e66767; --neu: #262d2f;
+  --pos-1: #16304f; --pos-2: #1d4f8c; --pos-3: #3987e5; --pos-4: #86b6ef;
+  --neg-1: #4a1f1f; --neg-2: #8a2f2e; --neg-3: #e34948; --neg-4: #f09b98;
+  --cell-ink-1: #eef3f4; --cell-ink-2: #eef3f4; --cell-ink-3: #ffffff; --cell-ink-4: #0f1719;
+  --ladder-1: #16304f; --ladder-2: #1d4f8c; --ladder-3: #2a6cc0; --ladder-4: #eef3f4;
+  --ladder-ink: #eef3f4; --ladder-ink-4: #0f1719;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--plane);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  padding-inline: 16px;
+}
+.wrap { max-width: 1180px; margin-inline: auto; padding-block: 28px 72px; display: grid; gap: 40px; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
+}
+h1, h2, h3 { font-family: var(--cond); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.05; }
+h2 { font-size: 26px; font-weight: 600; line-height: 1.15; }
+h3 { font-size: 17px; font-weight: 600; line-height: 1.25; }
+p { margin: 0; }
+.eyebrow, .label {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+.mono { font-family: var(--mono); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Masthead */
+.masthead { display: grid; gap: 14px; }
+.asof { color: var(--ink-2); font-size: 14px; }
+.call {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; max-width: 900px;
+}
+.call p { font-size: 16px; max-width: 70ch; }
+@media (max-width: 560px) { .call { grid-template-columns: 1fr; } }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  font-size: 12.5px; font-weight: 600; padding: 3px 10px 3px 8px; border-radius: 999px;
+  background: var(--neu); color: var(--ink);
+}
+.pill .ico { width: 10px; height: 10px; flex: none; }
+.pill.good .ico { color: var(--good); }
+.pill.warn .ico { color: var(--warn); }
+.pill.none .ico { color: var(--muted); }
+
+/* Section nav */
+.nav { display: flex; flex-wrap: wrap; gap: 6px; }
+.nav a {
+  font-size: 13px; text-decoration: none; color: var(--ink-2); padding: 5px 11px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface);
+}
+.nav a:hover { color: var(--ink); background: var(--accent-wash); }
+@media (min-width: 760px) {
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; padding-block: 8px; background: var(--plane); }
+}
+
+section { display: grid; gap: 16px; scroll-margin-top: 56px; }
+.sec-head { display: grid; gap: 6px; max-width: 80ch; }
+.sec-head p { color: var(--ink-2); }
+
+/* Ladder */
+.ladder { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; }
+.ladder-row { display: grid; grid-template-columns: minmax(150px, 230px) 1fr; gap: 12px; align-items: center; }
+.ladder-track { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.ladder-bar { height: 22px; border-radius: 4px; font-size: 12px; display: flex; align-items: center; padding-inline: 8px; color: var(--ladder-ink); white-space: nowrap; overflow: hidden; }
+.ladder-axis { display: grid; grid-template-columns: minmax(150px, 230px) 1fr; gap: 12px; }
+.ladder-axis .ticks { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.ladder-row .name { font-size: 13.5px; color: var(--ink-2); }
+@media (max-width: 620px) {
+  .ladder-row, .ladder-axis { grid-template-columns: 1fr; gap: 4px; }
+  .ladder-axis > span:first-child { display: none; }
+}
+
+/* Scorecard */
+.scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 205px), 1fr)); gap: 12px; }
+.tile {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px 12px;
+  display: grid; grid-template-rows: auto auto auto auto 1fr; gap: 6px;
+}
+.tile .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tile .metric { font-size: 13px; color: var(--ink-2); line-height: 1.35; min-height: 2.7em; }
+.tile .value { font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
+.tile .delta { font-size: 12.5px; color: var(--ink-2); }
+.delta .up { color: var(--good-text); font-weight: 600; }
+.delta .down { color: var(--bad-text); font-weight: 600; }
+.tile .spark { height: 36px; align-self: end; }
+.tile .spark svg { display: block; width: 100%; height: 36px; overflow: visible; }
+.tile .empty { font-size: 12.5px; color: var(--muted); align-self: end; }
+
+/* Cards */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px 12px;
+  display: grid; gap: 10px; align-content: start; min-width: 0;
+}
+.card .sub { font-size: 13px; color: var(--ink-2); }
+.span-all { grid-column: 1 / -1; }
+.chart { position: relative; min-height: 120px; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.src { font-size: 12px; color: var(--muted); display: grid; gap: 6px; }
+.src a { color: var(--ink-2); }
+details summary { cursor: pointer; font-size: 12px; color: var(--ink-2); width: fit-content; }
+.dtable-wrap { overflow-x: auto; margin-top: 6px; }
+.dtable { border-collapse: collapse; font-size: 12px; width: 100%; }
+.dtable th, .dtable td { text-align: left; padding: 4px 8px 4px 0; border-bottom: 1px solid var(--grid); vertical-align: top; }
+.dtable th { font-weight: 500; color: var(--muted); }
+.dtable td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.key-line { width: 16px; height: 2px; border-radius: 2px; display: inline-block; }
+.key-box { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.key-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+/* Stat mini tiles */
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+.stat .v { font-size: 24px; font-weight: 600; line-height: 1.15; }
+.stat .l { font-size: 13px; color: var(--ink-2); }
+.stat .s { font-size: 11.5px; color: var(--muted); }
+.stat .s a { color: var(--muted); }
+
+/* SVG chart styling */
+.gridline { stroke: var(--grid); stroke-width: 1; }
+.axisline { stroke: var(--axis); stroke-width: 1; }
+.tick { fill: var(--muted); font-size: 11px; font-family: var(--sans); font-variant-numeric: tabular-nums; }
+.dlabel { fill: var(--ink-2); font-size: 11.5px; font-weight: 500; font-family: var(--sans); font-variant-numeric: tabular-nums; }
+.dlabel.strong { fill: var(--ink); font-weight: 600; }
+.na { fill: var(--muted); font-size: 10.5px; font-family: var(--mono); }
+.hit { fill: transparent; cursor: default; }
+.hit:focus { outline: none; }
+.hit.bar:hover, .hit.bar:focus-visible { fill: var(--accent-wash); }
+.hit.plot:focus-visible { stroke: var(--accent); stroke-width: 1.5; }
+.crosshair { stroke: var(--axis); stroke-width: 1; }
+
+/* Tooltip */
+#tip {
+  position: fixed; z-index: 20; pointer-events: none; max-width: 300px;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14); padding: 8px 10px; font-size: 12.5px; display: grid; gap: 3px;
+}
+#tip .t-head { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+#tip .t-row { display: flex; align-items: center; gap: 8px; }
+#tip .t-val { font-weight: 600; font-variant-numeric: tabular-nums; }
+#tip .t-lab { color: var(--ink-2); }
+#tip .t-note { color: var(--ink-2); font-size: 12px; }
+
+/* Matrix */
+.matrix-wrap { overflow-x: auto; }
+.matrix { border-collapse: separate; border-spacing: 2px; font-size: 12px; width: 100%; min-width: 480px; }
+.matrix th { font-weight: 500; color: var(--muted); font-family: var(--mono); font-size: 11px; padding: 2px 4px; text-align: center; }
+.matrix th.rowh { text-align: left; font-family: var(--sans); font-size: 12.5px; color: var(--ink-2); white-space: nowrap; padding-right: 8px; }
+.matrix td { height: 32px; text-align: center; border-radius: 4px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; padding-inline: 4px; }
+.matrix td.blank { background: transparent; color: var(--muted); font-weight: 400; }
+.scale { display: flex; align-items: center; gap: 2px; font-size: 11.5px; color: var(--muted); flex-wrap: wrap; }
+.scale i { width: 22px; height: 10px; border-radius: 2px; display: inline-block; }
+.scale .gap { width: 8px; }
+
+/* Timeline & watchlist */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.timeline li { display: grid; grid-template-columns: 96px 1fr; gap: 12px; padding-block: 9px; border-top: 1px solid var(--grid); }
+.timeline li:first-child { border-top: 0; }
+.timeline .d { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 1px; }
+.timeline .e { font-size: 13.5px; }
+.timeline .e a { font-size: 12px; }
+.watch { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.watch .item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: grid; gap: 6px; align-content: start; }
+.watch .when { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 500; }
+.watch .what { font-weight: 600; }
+.watch .why { font-size: 13px; color: var(--ink-2); }
+
+.placeholder { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; max-width: 900px; }
+.placeholder code, .card code { font-family: var(--mono); font-size: 12.5px; background: var(--neu); padding: 1px 5px; border-radius: 4px; }
+.tickers { display: flex; flex-wrap: wrap; gap: 6px; }
+.tickers span { font-family: var(--mono); font-size: 12px; border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; color: var(--ink-2); }
+
+/* Indicator table */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip {
+  font: inherit; font-size: 12.5px; padding: 5px 11px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink-2);
+}
+.chip:hover { background: var(--accent-wash); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.search {
+  font: inherit; font-size: 13.5px; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--axis);
+  background: var(--surface); color: var(--ink); min-width: 0; width: min(100%, 260px);
+}
+.itable-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.itable { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 820px; }
+.itable th { text-align: left; font-weight: 500; font-size: 11.5px; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--axis); position: sticky; top: 0; background: var(--surface); }
+.itable td { padding: 9px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+.itable td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.itable .id { font-family: var(--mono); font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+.itable .vt { color: var(--ink-2); font-size: 12.5px; max-width: 42ch; }
+.itable .ch { font-size: 12px; color: var(--ink-2); white-space: nowrap; }
+.itable tr.grp td { background: var(--plane); font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-block: 6px; }
+.count { font-size: 12.5px; color: var(--muted); }
+footer.page { font-size: 12.5px; color: var(--muted); display: grid; gap: 4px; }
+@media (prefers-reduced-motion: no-preference) {
+  .chip, .nav a { transition: background-color 120ms ease, color 120ms ease; }
+}
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">United States · preclinical lab tools, research models &amp; services</p>
+    <h1>Preclinical Tools Monitor</h1>
+    <p class="asof" id="asof"></p>
+    <div class="call">
+      <span class="pill good"><svg class="ico" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1 L9.5 9 H0.5 Z" fill="currentColor"/></svg>Early upcycle</span>
+      <p>Biopharma is leading. CRO bookings, biotech funding and vendor orders turned up two to three quarters ago. NIH-funded academic demand has stopped falling but has not recovered. Expect consumables to improve first; instruments for new lab fit-outs follow, more likely in 2027.</p>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Sections">
+    <a href="#scorecard">Scorecard</a>
+    <a href="#cro">Preclinical CRO</a>
+    <a href="#biotech">Biotech capital</a>
+    <a href="#academic">Academic &amp; government</a>
+    <a href="#vendors">Tools vendors</a>
+    <a href="#pharma">Pharma R&amp;D</a>
+    <a href="#watch">Watchlist</a>
+    <a href="#indicators">All indicators</a>
+  </nav>
+
+  <section id="scorecard" aria-labelledby="h-score">
+    <div class="sec-head">
+      <h2 id="h-score">Scorecard</h2>
+      <p>One headline reading per buyer channel. Status is the analyst read as of the data date; the numbers underneath come straight from the dataset.</p>
+    </div>
+    <div class="scorecard" id="tiles"></div>
+    <div class="ladder" aria-label="Lead-time ladder">
+      <div class="ladder-axis"><span class="label">How far ahead each signal looks</span><div class="ticks"><span>6q</span><span>5q</span><span>4q</span><span>3q</span><span>2q</span><span>1q</span><span>0</span></div></div>
+      <div id="ladder"></div>
+    </div>
+  </section>
+
+  <section id="cro" aria-labelledby="h-cro">
+    <div class="sec-head">
+      <h2 id="h-cro">Preclinical CRO</h2>
+      <p>Charles River's Discovery &amp; Safety Assessment segment is the cleanest public read on outsourced preclinical study demand from pharma and biotech.</p>
+    </div>
+    <div class="grid2">
+      <article class="card">
+        <header><h3>DSA net book-to-bill</h3><p class="sub">Quarterly net bookings ÷ revenue. Bars grow from 1.0x: above means backlog is building.</p></header>
+        <div class="chart" id="c-btb"></div>
+        <div class="src" id="s-btb"></div>
+      </article>
+      <article class="card">
+        <header><h3>DSA backlog</h3><p class="sub">Committed preclinical work at quarter end, $bn. Rebuilding off the 2025 low, far below the 2022 peak.</p></header>
+        <div class="chart" id="c-backlog"></div>
+        <div class="src" id="s-backlog"></div>
+      </article>
+      <article class="card">
+        <header><h3>Organic revenue growth</h3><p class="sub">Year-over-year, %. Study revenue (DSA) just turned positive; research models (RMS) are still soft.</p></header>
+        <div class="legend" id="l-org"></div>
+        <div class="chart" id="c-org"></div>
+        <div class="src" id="s-org"></div>
+      </article>
+      <article class="card span-all">
+        <header><h3>What management is saying</h3><p class="sub">Latest demand commentary from Charles River.</p></header>
+        <ul class="timeline" id="t-crocomm"></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="biotech" aria-labelledby="h-bio">
+    <div class="sec-head">
+      <h2 id="h-bio">Biotech capital</h2>
+      <p>Money raised now turns into hiring, lab set-up and orders two to four quarters later. The recovery is real but skewed to late-stage megarounds, which spend more on clinical work than on discovery labs.</p>
+    </div>
+    <div class="grid2">
+      <article class="card">
+        <header><h3>Biopharma venture funding</h3><p class="sub">PitchBook, $bn per quarter as first reported. Q2 2026 is a floor ("topped $10bn").</p></header>
+        <div class="chart" id="c-vc"></div>
+        <div class="src" id="s-vc"></div>
+      </article>
+      <article class="card">
+        <header><h3>Biotech layoff rounds</h3><p class="sub">Fierce Biotech layoff tracker, rounds per quarter. Lower is better for bench headcount.</p></header>
+        <div class="chart" id="c-layoffs"></div>
+        <div class="src" id="s-layoffs"></div>
+      </article>
+    </div>
+    <div class="grid3" id="bio-stats"></div>
+  </section>
+
+  <section id="academic" aria-labelledby="h-acad">
+    <div class="sec-head">
+      <h2 id="h-acad">Academic &amp; government</h2>
+      <p>NIH dollars are flat, but fewer grants are being made and FY2026 money went out late. New grants pay for start-up equipment, so award counts matter more than the topline.</p>
+    </div>
+    <div class="grid2">
+      <article class="card">
+        <header><h3>NIH funding by fiscal year</h3><p class="sub">Program level, $bn. FY2027 shows the President's request and the House committee bill.</p></header>
+        <div class="legend" id="l-nih"></div>
+        <div class="chart" id="c-nih"></div>
+        <div class="src" id="s-nih"></div>
+      </article>
+      <article class="card">
+        <header><h3>NIH research grant success rate</h3><p class="sub">Share of competing research project grant applications funded.</p></header>
+        <div class="chart" id="c-succ"></div>
+        <div class="src" id="s-succ"></div>
+      </article>
+    </div>
+    <div class="grid3" id="acad-stats"></div>
+    <article class="card">
+      <header><h3>Policy and appropriations log</h3><p class="sub">Indirect-cost cap, multiyear funding and budget status, oldest first.</p></header>
+      <ul class="timeline" id="t-policy"></ul>
+    </article>
+  </section>
+
+  <section id="vendors" aria-labelledby="h-vend">
+    <div class="sec-head">
+      <h2 id="h-vend">Tools vendors</h2>
+      <p>What the picks-and-shovels sellers report. Orders are running ahead of revenue, pharma is strong, and academic demand is bottoming unevenly. Figures are global unless noted; qualitative bands (LSD, MSD…) are shown as reported.</p>
+    </div>
+    <div class="grid2">
+      <article class="card span-all">
+        <header><h3>Academic &amp; government end market</h3><p class="sub">Year-over-year growth by calendar quarter of the fiscal quarter end.</p></header>
+        <div class="matrix-wrap" id="m-acad"></div>
+        <div class="scale" id="scale-1"></div>
+        <div class="src" id="s-macad"></div>
+      </article>
+      <article class="card span-all">
+        <header><h3>Pharma &amp; biotech end market</h3><p class="sub">Year-over-year growth by calendar quarter of the fiscal quarter end.</p></header>
+        <div class="matrix-wrap" id="m-pharma"></div>
+        <div class="scale" id="scale-2"></div>
+        <div class="src" id="s-mpharma"></div>
+      </article>
+      <article class="card">
+        <header><h3>FY2026 organic growth guidance</h3><p class="sub">Range midpoints, %: earlier guide vs latest. Five of seven moved up; Bruker and Danaher held.</p></header>
+        <div class="legend" id="l-guide"></div>
+        <div class="chart" id="c-guide"></div>
+        <div class="src" id="s-guide"></div>
+      </article>
+      <article class="card">
+        <header><h3>Orders and bookings</h3><p class="sub">The vendor-side leading signals.</p></header>
+        <div class="grid3" id="order-stats" style="grid-template-columns: 1fr;"></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="pharma" aria-labelledby="h-pharma">
+    <div class="sec-head">
+      <h2 id="h-pharma">Pharma R&amp;D</h2>
+    </div>
+    <div class="placeholder">
+      <span class="pill none"><svg class="ico" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>No data yet</span>
+      <p>Quarterly GAAP R&amp;D for ten large US pharmas, plus a combined year-over-year growth line, fills in from SEC XBRL filings on the first run of <code>python tracker.py fetch</code>. The build environment could not reach sec.gov.</p>
+      <div class="tickers"><span>PFE</span><span>MRK</span><span>JNJ</span><span>LLY</span><span>ABBV</span><span>BMY</span><span>AMGN</span><span>GILD</span><span>REGN</span><span>VRTX</span></div>
+    </div>
+  </section>
+
+  <section id="watch" aria-labelledby="h-watch">
+    <div class="sec-head">
+      <h2 id="h-watch">Watchlist</h2>
+      <p>The next data points that could confirm or break the read.</p>
+    </div>
+    <div class="watch" id="watchlist"></div>
+  </section>
+
+  <section id="indicators" aria-labelledby="h-ind">
+    <div class="sec-head">
+      <h2 id="h-ind">All indicators</h2>
+      <p id="ind-intro"></p>
+    </div>
+    <div class="controls">
+      <div class="controls" id="chan-chips" role="group" aria-label="Filter by channel"></div>
+      <label class="label" for="ind-search" style="position:absolute;left:-9999px;">Search indicators</label>
+      <input class="search" id="ind-search" type="search" placeholder="Search indicators">
+      <span class="count" id="ind-count"></span>
+    </div>
+    <div class="itable-wrap">
+      <table class="itable">
+        <thead><tr><th>Indicator</th><th>Period</th><th>Latest</th><th>Prior</th><th>Change</th><th>Read as</th><th>Source</th></tr></thead>
+        <tbody id="ind-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="page">
+    <p>Built from <span class="mono">observations.csv</span>, <span class="mono">indicators.csv</span> and <span class="mono">latest.csv</span> in the dataset folder. Every number links to its source; some rows come from transcripts or aggregators and are flagged in their notes.</p>
+    <p>Rebuild with <span class="mono">python dashboard/build_dashboard.py</span> after refreshing the data.</p>
+  </footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const D = /*__DATA__*/null;
+
+/* ---------- DOM helpers (strings always go in as text) ---------- */
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v;
+    else if (k === "style") el.style.cssText = v;
+    else el.setAttribute(k, v);
+  }
+  for (const kid of kids.flat()) {
+    if (kid == null || kid === false) continue;
+    el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+  }
+  return el;
+}
+const NS = "http://www.w3.org/2000/svg";
+function s(tag, attrs, text) {
+  const el = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null) continue;
+    if (k === "fillVar") el.style.fill = `var(${v})`;
+    else if (k === "strokeVar") el.style.stroke = `var(${v})`;
+    else el.setAttribute(k, v);
+  }
+  if (text != null) el.textContent = text;
+  return el;
+}
+const link = (href, text) => href ? h("a", { href, target: "_blank", rel: "noopener" }, text) : text;
+
+/* ---------- Data helpers ---------- */
+const rows = id => D.obs[id] || [];
+function numeric(id, from) {
+  const seen = new Map();
+  for (const r of rows(id)) if (r.v != null && !seen.has(r.e)) seen.set(r.e, r);
+  return [...seen.values()].filter(r => !from || r.e >= from).sort((a, b) => a.e < b.e ? -1 : 1);
+}
+function firstPer(id) {
+  const seen = new Map();
+  for (const r of rows(id)) if (!seen.has(r.e)) seen.set(r.e, r);
+  return [...seen.values()].sort((a, b) => a.e < b.e ? -1 : 1);
+}
+const byPeriod = id => { const m = new Map(); for (const r of rows(id)) if (r.v != null && !m.has(r.p)) m.set(r.p, r); return m; };
+const toDate = e => new Date(e + "T00:00:00Z");
+const qOf = e => { const d = new Date(toDate(e).getTime() - 10 * 864e5); return `${d.getUTCFullYear()}-Q${Math.floor(d.getUTCMonth() / 3) + 1}`; };
+function quarterRange(a, b) {
+  const out = []; let [y, q] = [+a.slice(0, 4), +a.slice(6)];
+  const [yb, qb] = [+b.slice(0, 4), +b.slice(6)];
+  while (y < yb || (y === yb && q <= qb)) { out.push(`${y}-Q${q}`); q++; if (q > 4) { q = 1; y++; } }
+  return out;
+}
+const qShort = p => `Q${p.slice(6)} '${p.slice(2, 4)}`;
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const fmtDate = e => { const d = toDate(e); return `${d.getUTCDate()} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+const fmtMonth = e => { const d = toDate(e); return `${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+
+function fmt(v, unit, opts = {}) {
+  if (v == null || Number.isNaN(v)) return "";
+  const neg = v < 0, a = Math.abs(v);
+  const sg = neg ? "−" : (opts.signed && v > 0 ? "+" : "");
+  const dec = (x, d) => d != null ? x.toFixed(d) : (Number.isInteger(x) ? String(x) : String(+x.toFixed(2)));
+  switch (unit) {
+    case "pct": return sg + dec(a, opts.dp) + "%";
+    case "pts": return sg + dec(a, opts.dp) + " pts";
+    case "ratio": return sg + a.toFixed(2) + "x";
+    case "USD_bn": return sg + "$" + (a >= 100 ? a.toFixed(0) : dec(a, opts.dp)) + "bn";
+    case "USD_mn": return sg + "$" + Math.round(a).toLocaleString("en-US") + "m";
+    case "count": return sg + Math.round(a).toLocaleString("en-US");
+    case "price_usd": return sg + "$" + a.toFixed(2);
+    default: return sg + a.toLocaleString("en-US", { maximumFractionDigits: 2 });
+  }
+}
+
+/* ---------- Tooltip ---------- */
+const tip = document.getElementById("tip");
+function showTip(evtOrEl, head, lines) {
+  tip.replaceChildren(h("div", { class: "t-head" }, head));
+  for (const ln of lines) {
+    if (ln.note) { tip.append(h("div", { class: "t-note" }, ln.note)); continue; }
+    const key = ln.color ? h("span", { class: "key-line", style: `background:var(${ln.color})` }) : null;
+    tip.append(h("div", { class: "t-row" }, key, h("span", { class: "t-val" }, ln.value), ln.label ? h("span", { class: "t-lab" }, ln.label) : null));
+  }
+  tip.hidden = false;
+  let x, y;
+  if (evtOrEl instanceof Event && "clientX" in evtOrEl) { x = evtOrEl.clientX; y = evtOrEl.clientY; }
+  else { const r = evtOrEl.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top; }
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  let left = x + 14, top = y - th - 12;
+  if (left + tw > window.innerWidth - 8) left = x - tw - 14;
+  if (left < 8) left = 8;
+  if (top < 8) top = y + 16;
+  tip.style.left = left + "px"; tip.style.top = top + "px";
+}
+const hideTip = () => { tip.hidden = true; };
+function bindTip(el, head, lines) {
+  el.addEventListener("pointermove", e => showTip(e, head, lines));
+  el.addEventListener("pointerleave", hideTip);
+  el.addEventListener("focus", () => showTip(el, head, lines));
+  el.addEventListener("blur", hideTip);
+}
+
+/* ---------- Scales ---------- */
+function niceTicks(min, max, count = 4) {
+  const span = max - min || 1;
+  const raw = span / count, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(st => span / st <= count) || 10 * mag;
+  const lo = Math.floor(min / step) * step, hi = Math.ceil(max / step) * step;
+  const ticks = []; for (let t = lo; t <= hi + step / 1e6; t += step) ticks.push(+t.toFixed(10));
+  return { lo, hi, ticks };
+}
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0 || 1) * (r1 - r0);
+
+/* rounded data-end bar, square at the baseline */
+function barPath(x, w, yBase, yEnd) {
+  const up = yEnd < yBase, hgt = Math.abs(yBase - yEnd), r = Math.min(4, hgt, w / 2);
+  if (hgt < 0.5) return `M${x},${yBase}h${w}`;
+  if (up) return `M${x},${yBase}V${yEnd + r}Q${x},${yEnd} ${x + r},${yEnd}H${x + w - r}Q${x + w},${yEnd} ${x + w},${yEnd + r}V${yBase}Z`;
+  return `M${x},${yBase}V${yEnd - r}Q${x},${yEnd} ${x + r},${yEnd}H${x + w - r}Q${x + w},${yEnd} ${x + w},${yEnd - r}V${yBase}Z`;
+}
+
+/* ---------- Column chart ---------- */
+function columnChart(el, cfg) {
+  const W = Math.max(280, el.clientWidth), H = cfg.height || 220;
+  const m = { l: 40, r: 8, t: 18, b: 26 };
+  const vals = cfg.data.filter(d => d.v != null).map(d => d.v);
+  const base = cfg.base ?? 0;
+  const { lo, hi, ticks } = niceTicks(Math.min(base, ...vals, cfg.min ?? Infinity), Math.max(base, ...vals, cfg.max ?? -Infinity), cfg.tickCount || 5);
+  const y = lin(lo, hi, H - m.b, m.t);
+  const band = (W - m.l - m.r) / cfg.data.length, bw = Math.min(24, band * 0.62);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": cfg.aria });
+  for (const t of ticks) {
+    svg.append(s("line", { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t), class: t === base ? "axisline" : "gridline" }));
+    svg.append(s("text", { x: m.l - 6, y: y(t) + 3.5, "text-anchor": "end", class: "tick" }, cfg.tickFmt(t)));
+  }
+  const minB = cfg.minLabelBand || 34, every = band < minB ? Math.ceil(minB / band) : 1;
+  cfg.data.forEach((d, i) => {
+    const cx = m.l + band * i + band / 2;
+    if (i % every === 0 || i === cfg.data.length - 1) svg.append(s("text", { x: cx, y: H - 8, "text-anchor": "middle", class: "tick" }, d.x));
+    if (d.v == null) { svg.append(s("text", { x: cx, y: y(base) - 6, "text-anchor": "middle", class: "na" }, "n/a")); }
+    else {
+      svg.append(s("path", { d: barPath(cx - bw / 2, bw, y(base), y(d.v)), fillVar: d.color || cfg.color || "--series-1" }));
+      if (d.label) {
+        const above = d.v >= base;
+        svg.append(s("text", { x: cx, y: above ? y(d.v) - 6 : y(d.v) + 13, "text-anchor": "middle", class: "dlabel" + (d.strong ? " strong" : "") }, d.label));
+      }
+    }
+    const hit = s("rect", { x: m.l + band * i, y: m.t, width: band, height: H - m.t - m.b, class: "hit bar", tabindex: 0, "aria-label": `${d.x}: ${d.v == null ? "not available" : cfg.tipFmt(d)}` });
+    svg.append(hit);
+    bindTip(hit, d.head || d.x, d.v == null ? [{ note: "Not available in the dataset" }] : [{ value: cfg.tipFmt(d), label: cfg.seriesName, color: d.color || cfg.color || "--series-1" }, ...(d.note ? [{ note: d.note }] : [])]);
+  });
+  el.replaceChildren(svg);
+}
+
+/* ---------- Line chart (numeric x) with crosshair ---------- */
+function lineChart(el, cfg) {
+  const W = Math.max(280, el.clientWidth), H = cfg.height || 220;
+  const m = { l: 40, r: cfg.rightPad ?? 48, t: 16, b: 26 };
+  const all = cfg.series.flatMap(sr => sr.pts);
+  const xs = [...new Set(all.map(p => p.x))].sort((a, b) => a - b);
+  const xMin = cfg.xMin ?? xs[0], xMax = cfg.xMax ?? xs[xs.length - 1];
+  const x = lin(xMin, xMax, m.l + 6, W - m.r);
+  const { lo, hi, ticks } = niceTicks(Math.min(...all.map(p => p.y), cfg.yMin ?? Infinity), Math.max(...all.map(p => p.y), cfg.yMax ?? -Infinity), 4);
+  const y = lin(lo, hi, H - m.b, m.t);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": cfg.aria });
+  for (const t of ticks) {
+    svg.append(s("line", { x1: m.l, x2: W - m.r + 6, y1: y(t), y2: y(t), class: (t === 0 && lo < 0) ? "axisline" : "gridline" }));
+    svg.append(s("text", { x: m.l - 6, y: y(t) + 3.5, "text-anchor": "end", class: "tick" }, cfg.tickFmt(t)));
+  }
+  for (const xt of cfg.xTicks) svg.append(s("text", { x: x(xt.x), y: H - 8, "text-anchor": "middle", class: "tick" }, xt.label));
+  const cross = s("line", { y1: m.t, y2: H - m.b, class: "crosshair", visibility: "hidden" });
+  svg.append(cross);
+  for (const sr of cfg.series) {
+    const d = sr.pts.map((p, i) => `${i ? "L" : "M"}${x(p.x)},${y(p.y)}`).join("");
+    svg.append(s("path", { d, fill: "none", strokeVar: sr.color, "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    for (const p of sr.pts) svg.append(s("circle", { cx: x(p.x), cy: y(p.y), r: 3.5, fillVar: sr.color, strokeVar: "--surface", "stroke-width": 2 }));
+    for (const p of sr.pts.filter(p => p.label)) {
+      const endish = p === sr.pts[sr.pts.length - 1];
+      svg.append(s("text", { x: endish ? x(p.x) + 8 : x(p.x), y: endish ? y(p.y) + 4 + (p.dy || 0) : y(p.y) - 9, "text-anchor": endish ? "start" : "middle", class: "dlabel" + (endish ? " strong" : "") }, p.label));
+    }
+  }
+  const overlay = s("rect", { x: m.l, y: m.t, width: W - m.l - m.r + 6, height: H - m.t - m.b, class: "hit plot", tabindex: 0, "aria-label": cfg.aria + ". Use left and right arrow keys to step through points." });
+  svg.append(overlay);
+  let idx = xs.length - 1;
+  const readout = (i, evt) => {
+    const xv = xs[i]; cross.setAttribute("x1", x(xv)); cross.setAttribute("x2", x(xv)); cross.setAttribute("visibility", "visible");
+    const lines = cfg.series.map(sr => { const p = sr.pts.find(q => q.x === xv); return p ? { value: cfg.valFmt(p.y), label: sr.name, color: sr.color } : null; }).filter(Boolean);
+    const extra = cfg.series.map(sr => sr.pts.find(q => q.x === xv)).find(p => p && p.note);
+    showTip(evt || overlay, cfg.xFmt(xv), extra ? [...lines, { note: extra.note }] : lines);
+  };
+  overlay.addEventListener("pointermove", e => {
+    const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * (W / r.width);
+    let best = 0; xs.forEach((xv, i) => { if (Math.abs(x(xv) - px) < Math.abs(x(xs[best]) - px)) best = i; });
+    idx = best; readout(best, e);
+  });
+  overlay.addEventListener("pointerleave", () => { cross.setAttribute("visibility", "hidden"); hideTip(); });
+  overlay.addEventListener("focus", () => readout(idx));
+  overlay.addEventListener("blur", () => { cross.setAttribute("visibility", "hidden"); hideTip(); });
+  overlay.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") { idx = Math.max(0, idx - 1); readout(idx); e.preventDefault(); }
+    if (e.key === "ArrowRight") { idx = Math.min(xs.length - 1, idx + 1); readout(idx); e.preventDefault(); }
+  });
+  el.replaceChildren(svg);
+}
+
+/* ---------- Sparkline ---------- */
+function sparkline(el, pts) {
+  const W = Math.max(120, el.clientWidth || 200), H = 36, pad = 5;
+  const ys = pts.map(p => p.v), lo = Math.min(...ys), hi = Math.max(...ys);
+  const x = lin(0, pts.length - 1, pad, W - pad), y = lin(lo, hi, H - pad, pad);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, "aria-hidden": "true" });
+  const d = pts.map((p, i) => `${i ? "L" : "M"}${x(i)},${y(p.v)}`).join("");
+  svg.append(s("path", { d: d + `L${x(pts.length - 1)},${H}L${x(0)},${H}Z`, fillVar: "--series-1", "fill-opacity": 0.08, stroke: "none" }));
+  svg.append(s("path", { d, fill: "none", strokeVar: "--mark-muted", "stroke-width": 2, "stroke-linejoin": "round", "vector-effect": "non-scaling-stroke" }));
+  const last = pts.length - 1;
+  svg.append(s("path", { d: `M${x(last - 1)},${y(pts[last - 1].v)}L${x(last)},${y(pts[last].v)}`, fill: "none", strokeVar: "--series-1", "stroke-width": 2, "vector-effect": "non-scaling-stroke" }));
+  svg.append(s("circle", { cx: x(last), cy: y(pts[last].v), r: 3.5, fillVar: "--series-1", strokeVar: "--surface", "stroke-width": 2 }));
+  el.replaceChildren(svg);
+}
+
+/* ---------- Data disclosure (the table view for every chart) ---------- */
+function dataDetails(pairs, cols = ["Period", "Value", "Source"]) {
+  const tb = h("tbody");
+  for (const r of pairs) tb.append(h("tr", {}, h("td", {}, r.period), h("td", { class: "n" }, r.value), h("td", {}, link(r.url, r.source))));
+  return h("details", {}, h("summary", {}, "Data and sources"),
+    h("div", { class: "dtable-wrap" }, h("table", { class: "dtable" }, h("thead", {}, h("tr", {}, cols.map(c => h("th", {}, c)))), tb)));
+}
+function srcLine(text, url) { return h("span", {}, "Source: ", link(url, text)); }
+
+/* ---------- Status pill ---------- */
+function pill(kind, text) {
+  const ico = kind === "good" ? '<path d="M5 1 L9.5 9 H0.5 Z" fill="currentColor"/>'
+    : kind === "warn" ? '<rect x="1" y="1" width="8" height="8" rx="1.5" transform="rotate(45 5 5)" fill="currentColor"/>'
+    : '<circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>';
+  const el = h("span", { class: "pill " + kind });
+  el.innerHTML = `<svg class="ico" viewBox="0 0 10 10" aria-hidden="true">${ico}</svg>`;
+  el.append(document.createTextNode(text));
+  return el;
+}
+
+/* =================== Page =================== */
+const RENDER = [];
+function render(fn) { RENDER.push(fn); fn(); }
+
+document.getElementById("asof").textContent =
+  `Data through ${fmtDate(D.asOf)} · ${D.counts.obs} cited observations · ${D.counts.withData} of ${D.counts.catalog} indicators populated`;
+
+/* ---- Scorecard ---- */
+(function tiles() {
+  const box = document.getElementById("tiles");
+  const btb = numeric("CRO_CRL_DSA_BTB"), vc = numeric("BIO_VC_USD_PITCHBOOK"), ag = numeric("TOOLS_A_ORGANIC"), sr = numeric("ACAD_NIH_RPG_SUCCESS_RATE");
+  const vcPrior = vc.find(r => r.p === "2025-Q2");
+  const defs = [
+    { ch: "Preclinical CRO", st: ["good", "Turned up"], metric: `Charles River DSA net book-to-bill, ${qShort(btb.at(-1).p)}`,
+      value: fmt(btb.at(-1).v, "ratio"), delta: [btb.at(-1).v - btb.at(-2).v, `vs ${fmt(btb.at(-2).v, "ratio")} prior quarter`, v => (v > 0 ? "+" : "−") + Math.abs(v).toFixed(2) + "x"], spark: btb, href: "#cro" },
+    { ch: "Biotech capital", st: ["good", "Turned up"], metric: `Biopharma venture funding (PitchBook), ${qShort(vc.at(-1).p)}`,
+      value: "$10bn+", delta: [vc.at(-1).v - vcPrior.v, `vs ${fmt(vcPrior.v, "USD_bn")} a year earlier`, () => "~2x"], spark: vc, href: "#biotech" },
+    { ch: "Tools vendors", st: ["good", "Orders rising"], metric: `Agilent core revenue growth, fiscal ${ag.at(-1).p.slice(7)} ${ag.at(-1).p.slice(2, 6)}`,
+      value: fmt(ag.at(-1).v, "pct", { signed: true }), delta: [ag.at(-1).v - ag.at(-2).v, `vs ${fmt(ag.at(-2).v, "pct", { signed: true })} prior quarter`, v => (v > 0 ? "+" : "−") + Math.abs(v).toFixed(1) + " pts"], spark: ag, href: "#vendors" },
+    { ch: "Academic & government", st: ["warn", "Lagging"], metric: `NIH research grant success rate, ${sr.at(-1).p}`,
+      value: fmt(sr.at(-1).v, "pct", { dp: 1 }), delta: [sr.at(-1).v - sr.at(-2).v, `vs ${fmt(sr.at(-2).v, "pct", { dp: 1 })} in ${sr.at(-2).p}`, v => (v > 0 ? "+" : "−") + Math.abs(v).toFixed(1) + " pts"], spark: sr, href: "#academic" },
+    { ch: "Pharma R&D", st: ["none", "No data yet"], metric: "Quarterly R&D for 10 large US pharmas (SEC XBRL)", value: "—", note: "Fills in on the first data fetch", href: "#pharma" },
+  ];
+  for (const d of defs) {
+    const t = h("article", { class: "tile" });
+    t.append(h("div", { class: "top" }, h("a", { href: d.href, class: "label", style: "text-decoration:none;color:var(--muted)" }, d.ch), pill(d.st[0], d.st[1])));
+    t.append(h("p", { class: "metric" }, d.metric));
+    t.append(h("p", { class: "value" }, d.value));
+    if (d.delta) {
+      const [dv, txt, f] = d.delta;
+      t.append(h("p", { class: "delta" }, h("span", { class: dv >= 0 ? "up" : "down" }, (dv >= 0 ? "▲ " : "▼ ") + f(dv)), " ", txt));
+    } else t.append(h("p", { class: "delta" }, d.note));
+    const sp = h("div", { class: "spark" });
+    t.append(sp);
+    if (d.spark) { const pts = d.spark.slice(-12); render(() => sparkline(sp, pts)); } else sp.replaceWith(h("p", { class: "empty" }, "No series yet"));
+    box.append(t);
+  }
+})();
+
+/* ---- Lead-time ladder ---- */
+(function ladder() {
+  const rowsL = [
+    ["Appropriations & policy", 0, 4, "--ladder-1", "3–6 quarters"],
+    ["NIH awards · biotech funding · pharma R&D budgets", 2, 5, "--ladder-2", "2–4 quarters"],
+    ["CRO bookings · vendor orders · R&D hiring", 4, 6, "--ladder-3", "1–2 quarters"],
+    ["Vendor revenue (the outcome)", 6, 7, "--ladder-4", "now"],
+  ];
+  const box = document.getElementById("ladder");
+  for (const [name, a, b, c, txt] of rowsL) {
+    const track = h("div", { class: "ladder-track" });
+    const bar = h("div", { class: "ladder-bar", style: `grid-column:${a + 1}/${b + 1};background:var(${c});${c === "--ladder-4" ? "color:var(--ladder-ink-4)" : ""}` }, txt);
+    track.append(bar);
+    box.append(h("div", { class: "ladder-row" }, h("span", { class: "name" }, name), track));
+  }
+})();
+
+/* ---- CRO ---- */
+render(() => {
+  const d = numeric("CRO_CRL_DSA_BTB");
+  const minV = Math.min(...d.map(r => r.v));
+  columnChart(document.getElementById("c-btb"), {
+    aria: "Charles River DSA net book-to-bill by quarter",
+    base: 1, min: 0.7, max: 1.3,
+    data: d.map((r, i) => ({ x: qShort(r.p), head: r.p, v: r.v, color: r.v >= 1 ? "--series-1" : "--series-neg",
+      label: (i === d.length - 1 || r.v === minV) ? fmt(r.v, "ratio") : null, strong: i === d.length - 1, note: r.no && r.no.length < 140 ? r.no : null })),
+    tickFmt: t => t.toFixed(1) + "x", tipFmt: p => fmt(p.v, "ratio"), seriesName: "net book-to-bill",
+  });
+});
+{
+  const d = numeric("CRO_CRL_DSA_BTB");
+  const box = document.getElementById("s-btb");
+  box.append(srcLine("Charles River earnings releases and calls", d.at(-1).su), h("span", {}, "Before 2025 the company only said the ratio was below 1x."), dataDetails(d.map(r => ({ period: r.p, value: fmt(r.v, "ratio"), source: r.s, url: r.su }))));
+}
+render(() => {
+  const d = numeric("CRO_CRL_DSA_BACKLOG");
+  const peak = d.reduce((a, b) => b.v > a.v ? b : a);
+  const years = [2022, 2023, 2024, 2025, 2026];
+  lineChart(document.getElementById("c-backlog"), {
+    aria: "Charles River DSA backlog in billions of dollars", rightPad: 58,
+    series: [{ name: "DSA backlog", color: "--series-1", pts: d.map(r => ({ x: toDate(r.e).getTime(), y: r.v, label: (r === peak || r === d.at(-1)) ? fmt(r.v, "USD_bn") : null, note: r.s })) }],
+    xTicks: years.map(yr => ({ x: Date.UTC(yr, 0, 1), label: String(yr) })),
+    yMin: 1.5, tickFmt: t => "$" + t.toFixed(1), valFmt: v => fmt(v, "USD_bn"), xFmt: t => qOf(new Date(t).toISOString().slice(0, 10)),
+  });
+});
+{
+  const d = numeric("CRO_CRL_DSA_BACKLOG");
+  document.getElementById("s-backlog").append(srcLine("Charles River releases, calls and 10-Ks", d.at(-1).su), dataDetails(d.map(r => ({ period: r.p, value: fmt(r.v, "USD_bn"), source: r.s, url: r.su }))));
+}
+{
+  const l = document.getElementById("l-org");
+  l.append(h("span", {}, h("span", { class: "key-line", style: "background:var(--series-1)" }), "Discovery & Safety Assessment (DSA)"),
+           h("span", {}, h("span", { class: "key-line", style: "background:var(--series-2)" }), "Research Models & Services (RMS)"));
+}
+render(() => {
+  const dsa = numeric("CRO_CRL_DSA_ORGANIC", "2024-01-01"), rms = numeric("CRO_CRL_RMS_ORGANIC", "2024-01-01");
+  const pts = (arr, name) => arr.map((r, i) => ({ x: toDate(r.e).getTime(), y: r.v, label: i === arr.length - 1 ? `${name} ${fmt(r.v, "pct", { signed: true })}` : null }));
+  const sd = pts(dsa, "DSA"), sr = pts(rms, "RMS");
+  if (sd.length && sr.length) { const a = sd.at(-1), b = sr.at(-1); if (a.y >= b.y) { a.dy = -5; b.dy = 5; } else { a.dy = 5; b.dy = -5; } }
+  lineChart(document.getElementById("c-org"), {
+    aria: "Charles River organic growth, DSA and RMS segments", rightPad: 78,
+    series: [{ name: "DSA", color: "--series-1", pts: sd }, { name: "RMS", color: "--series-2", pts: sr }],
+    xTicks: [2024, 2025, 2026].map(yr => ({ x: Date.UTC(yr, 2, 31), label: `Q1 '${String(yr).slice(2)}` })),
+    tickFmt: t => (t > 0 ? "+" : "") + String(t).replace("-", "−") + "%", valFmt: v => fmt(v, "pct", { signed: true }),
+    xFmt: t => qOf(new Date(t).toISOString().slice(0, 10)),
+  });
+});
+{
+  const dsa = numeric("CRO_CRL_DSA_ORGANIC", "2024-01-01"), rms = numeric("CRO_CRL_RMS_ORGANIC", "2024-01-01");
+  const rowsD = dsa.map(r => ({ period: r.p + " DSA", value: fmt(r.v, "pct", { signed: true }), source: r.s, url: r.su }))
+    .concat(rms.map(r => ({ period: r.p + " RMS", value: fmt(r.v, "pct", { signed: true }), source: r.s, url: r.su })));
+  document.getElementById("s-org").append(srcLine("Charles River earnings releases", dsa.at(-1).su), dataDetails(rowsD));
+}
+{
+  const ul = document.getElementById("t-crocomm");
+  for (const r of firstPer("CRO_COMMENTARY").slice(-4).reverse())
+    ul.append(h("li", {}, h("span", { class: "d" }, r.p), h("span", { class: "e" }, r.t, " ", link(r.su, r.s))));
+}
+
+/* ---- Biotech ---- */
+render(() => {
+  const m = byPeriod("BIO_VC_USD_PITCHBOOK");
+  const qs = quarterRange("2023-Q3", [...m.keys()].sort().at(-1));
+  const vals = qs.map(q => m.get(q)).filter(Boolean), minR = vals.reduce((a, b) => b.v < a.v ? b : a);
+  columnChart(document.getElementById("c-vc"), {
+    aria: "PitchBook biopharma venture funding by quarter",
+    data: qs.map((q, i) => { const r = m.get(q); const last = i === qs.length - 1;
+      return { x: qShort(q), head: q, v: r ? r.v : null, color: last ? "--series-1" : "--mark-muted",
+        label: r && (last || r === minR) ? (last ? "$10bn+" : fmt(r.v, "USD_bn")) : null, strong: last,
+        note: last ? "Floor: PitchBook said deal value topped $10bn." : null }; }),
+    tickFmt: t => "$" + t, tipFmt: p => p.head === qs.at(-1) ? "$10bn+" : fmt(p.v, "USD_bn"), seriesName: "deal value",
+  });
+});
+{
+  const m = byPeriod("BIO_VC_USD_PITCHBOOK");
+  const rs = [...m.values()].filter(r => r.p.includes("-Q")).sort((a, b) => a.e < b.e ? -1 : 1);
+  document.getElementById("s-vc").append(srcLine("PitchBook biopharma reports", rs.at(-1).su), h("span", {}, "Q4 2024 was not captured. PitchBook revises earlier quarters upward."), dataDetails(rs.map(r => ({ period: r.p, value: fmt(r.v, "USD_bn"), source: r.s, url: r.su }))));
+}
+render(() => {
+  const d = numeric("BIO_LAYOFFS_FIERCE").filter(r => r.p.includes("-Q"));
+  columnChart(document.getElementById("c-layoffs"), {
+    aria: "Biotech layoff rounds per quarter",
+    data: d.map((r, i) => ({ x: qShort(r.p), head: r.p, v: r.v, color: "--series-1", label: (i === 0 || i === d.length - 1) ? fmt(r.v, "count") : null, strong: i === d.length - 1 })),
+    tickFmt: t => String(t), tipFmt: p => fmt(p.v, "count") + " rounds", seriesName: "",
+  });
+});
+{
+  const d = numeric("BIO_LAYOFFS_FIERCE").filter(r => r.p.includes("-Q"));
+  document.getElementById("s-layoffs").append(srcLine("Fierce Biotech layoff tracker", d.at(-1).su), dataDetails(d.map(r => ({ period: r.p, value: fmt(r.v, "count"), source: r.s, url: r.su }))));
+}
+function stat(box, v, l, sub, url, srcName) {
+  box.append(h("div", { class: "stat" }, h("span", { class: "v" }, v), h("span", { class: "l" }, l), h("span", { class: "s" }, sub, sub ? " · " : "", link(url, srcName))));
+}
+{
+  const box = document.getElementById("bio-stats");
+  const xbi = rows("BIO_XBI_RETURN_TTM").find(r => r.p === "TTM-2026-09") || rows("BIO_XBI_RETURN_TTM").at(-1);
+  const lvl = rows("BIO_XBI_LEVEL").at(-1);
+  stat(box, fmt(xbi.v, "pct", { signed: true }), "XBI biotech ETF, trailing 12 months", `close ${fmt(lvl.v, "price_usd")} on ${fmtDate(lvl.e)}`, xbi.su, xbi.s);
+  const fo = rows("BIO_FOLLOWON_USD_DEALFORMA_FO_H").find(r => r.p === "2026-H1");
+  stat(box, fmt(fo.v, "USD_bn"), "Public biotech follow-ons, H1 2026", "global; vs $4.4–5.2bn a quarter in mid-2025", fo.su, "DealForma");
+  const ipo = rows("BIO_IPO_COUNT_BIOBUCKS_YTD").at(-1), ipoUsd = rows("BIO_IPO_USD_BIOBUCKS_YTD").at(-1);
+  stat(box, fmt(ipo.v, "count"), "US biotech IPOs, 2026 to late August", `about ${fmt(ipoUsd.v, "USD_bn")} raised; 8 in all of 2025`, ipo.su, "BioBucks");
+  const bos = numeric("BIO_LAB_VACANCY_BOS_CBRE").at(-1), bosPrev = numeric("BIO_LAB_VACANCY_BOS_CBRE").at(-2);
+  stat(box, fmt(bos.v, "pct", { dp: 1 }), `Greater Boston lab vacancy, ${qShort(bos.p)}`, `up from ${fmt(bosPrev.v, "pct", { dp: 1 })} a year earlier; Bay Area ${fmt(numeric("BIO_LAB_VACANCY_SF_CBRE").at(-1).v, "pct", { dp: 1 })}`, bos.su, "CBRE");
+}
+
+/* ---- Academic ---- */
+{
+  const l = document.getElementById("l-nih");
+  l.append(h("span", {}, h("span", { class: "key-box", style: "background:var(--series-1)" }), "Enacted"),
+           h("span", {}, h("span", { class: "key-box", style: "background:var(--series-1-soft)" }), "Proposed for FY2027"));
+}
+render(() => {
+  const m = byPeriod("ACAD_NIH_PROGRAM_LEVEL");
+  const fys = ["FY2019", "FY2020", "FY2021", "FY2022", "FY2023", "FY2024", "FY2025", "FY2026"];
+  const req = numeric("ACAD_NIH_PBR").find(r => r.p === "FY2027"), house = numeric("ACAD_NIH_HOUSE_MARK").find(r => r.p === "FY2027");
+  const data = fys.map(fy => { const r = m.get(fy); return { x: "FY" + fy.slice(4), head: fy + " enacted", v: r ? r.v : null, color: "--series-1",
+      label: r && (fy === "FY2019" || fy === "FY2026") ? fmt(r.v, "USD_bn", { dp: 1 }) : null, strong: fy === "FY2026", note: r && fy === "FY2026" ? "CRS program level; Science reports $47.2bn on a different basis." : null }; });
+  data.push({ x: "Req", head: "FY2027 President's request", v: req.v, color: "--series-1-soft", label: fmt(req.v, "USD_bn", { dp: 1 }), note: "Would cut about 13% from FY2026." });
+  data.push({ x: "House", head: "FY2027 House committee bill", v: house.v, color: "--series-1-soft", label: fmt(house.v, "USD_bn", { dp: 1 }), note: "Committee-approved June 2026. FY2027 is on a CR to 11 Dec 2026." });
+  columnChart(document.getElementById("c-nih"), {
+    aria: "NIH program level by fiscal year with FY2027 proposals", data, min: 0, max: 50, minLabelBand: 28,
+    tickFmt: t => "$" + t, tipFmt: p => fmt(p.v, "USD_bn", { dp: 1 }), seriesName: "",
+  });
+});
+{
+  const pl = numeric("ACAD_NIH_PROGRAM_LEVEL"), req = numeric("ACAD_NIH_PBR").find(r => r.p === "FY2027"), house = numeric("ACAD_NIH_HOUSE_MARK").find(r => r.p === "FY2027");
+  const rs = pl.map(r => ({ period: r.p + " enacted", value: fmt(r.v, "USD_bn"), source: r.s, url: r.su }))
+    .concat([{ period: "FY2027 request", value: fmt(req.v, "USD_bn"), source: req.s, url: req.su }, { period: "FY2027 House bill", value: fmt(house.v, "USD_bn"), source: house.s, url: house.su }]);
+  document.getElementById("s-nih").append(srcLine("Congressional Research Service R43341", pl.at(-1).su), h("span", {}, "FY2020, FY2021 and FY2024 were not captured."), dataDetails(rs));
+}
+render(() => {
+  const d = numeric("ACAD_NIH_RPG_SUCCESS_RATE");
+  const peak = d.reduce((a, b) => b.v > a.v ? b : a);
+  lineChart(document.getElementById("c-succ"), {
+    aria: "NIH research project grant success rate by fiscal year", rightPad: 52,
+    series: [{ name: "RPG success rate", color: "--series-1", pts: d.map(r => ({ x: +r.p.slice(2), y: r.v, label: (r === peak || r === d.at(-1)) ? fmt(r.v, "pct", { dp: 1 }) : null, note: r.s })) }],
+    xTicks: d.map(r => ({ x: +r.p.slice(2), label: "FY" + r.p.slice(4) })),
+    yMin: 10, yMax: 22, tickFmt: t => t + "%", valFmt: v => fmt(v, "pct", { dp: 1 }), xFmt: t => "FY" + t,
+  });
+});
+{
+  const d = numeric("ACAD_NIH_RPG_SUCCESS_RATE");
+  document.getElementById("s-succ").append(srcLine("NIH Extramural Nexus and NIH Data Book", "https://report.nih.gov/nihdatabook/report/20"), h("span", {}, "FY2025 is 13.0% per the Data Book as reported by DrugMonkey; confirm on the Data Book page."), dataDetails(d.map(r => ({ period: r.p, value: fmt(r.v, "pct", { dp: 1 }), source: r.s, url: r.su }))));
+}
+{
+  const box = document.getElementById("acad-stats");
+  const ob = numeric("ACAD_NIH_EXTRAMURAL_OBLIGATED_YTD").at(-1);
+  stat(box, "69%", "of FY2026 extramural grant budget obligated by 31 Jul", `${fmt(ob.v, "USD_bn")} with two months left, so ordering is back-loaded`, ob.su, "AAMC");
+  const pace = numeric("ACAD_NIH_AWARD_PACE_VS_FY24").at(-1);
+  stat(box, fmt(pace.v, "pct", { signed: true }), "Competitive awards vs same point in FY2024", "all mechanisms, through 31 Jul 2026", pace.su, "AAMC");
+  const myf = numeric("ACAD_NIH_MYF_N").at(-1), myfPrev = numeric("ACAD_NIH_MYF_N").at(-2);
+  stat(box, fmt(myf.v, "count") + "+", "Multiyear-funded awards in FY2025", `vs ${fmt(myfPrev.v, "count")} in FY2024: more cash per grant, fewer grants`, myf.su, "AAMC");
+  const term = numeric("ACAD_NIH_TERMINATED_USD").at(-1);
+  stat(box, fmt(term.v, "USD_bn"), "Grant value still terminated or frozen", `${fmtMonth(term.e)}, down from about $2.3–2.5bn in 2025`, term.su, "Grant Witness");
+}
+{
+  const ul = document.getElementById("t-policy");
+  const ev = ["ACAD_NIH_IDC_CAP", "ACAD_NIH_APPROPS_STATUS", "ACAD_NIH_MYF_POLICY"].flatMap(id => rows(id).map(r => ({ ...r, id })))
+    .filter(r => r.t).sort((a, b) => a.e < b.e ? -1 : 1);
+  for (const r of ev) {
+    const label = r.p.startsWith("FY") ? r.p : fmtMonth(r.e);
+    ul.append(h("li", {}, h("span", { class: "d" }, label), h("span", { class: "e" }, r.t, " ", link(r.su, r.s))));
+  }
+}
+
+/* ---- Vendors ---- */
+const BANDS = [[/high[- ]teens/i, "HT", 18], [/mid[- ]teens/i, "MT", 15], [/low[- ]double/i, "LDD", 12], [/high[- ]single/i, "HSD", 8],
+  [/mid[- ]single/i, "MSD", 5], [/low[- ]single/i, "LSD", 2], [/double[- ]digit/i, "DD", 12]];
+const NEG = /declin|decrease|\bdown\b|weak|soft|pressur|lower/i, POS = /grew|grow|\bup\b|improv|positive|strength|rose|increase|\+/i;
+function readCell(r) {
+  if (!r) return null;
+  if (r.v != null) return { v: r.v, label: fmt(r.v, "pct", { signed: true }), text: r.t };
+  const clause = (r.t || "").split(";")[0];
+  const n = clause.search(NEG), p = clause.search(POS);
+  const dir = n < 0 && p < 0 ? 0 : (n >= 0 && (p < 0 || n < p) ? -1 : 1);
+  const band = BANDS.find(([re]) => re.test(clause));
+  if (!dir) return { v: null, label: "note", text: r.t, mag: 0 };
+  if (band) return { v: dir * band[2], label: (dir > 0 ? "+" : "−") + band[1], text: r.t };
+  return { v: dir * 1.5, label: dir > 0 ? "Up" : "Down", text: r.t };
+}
+function stepOf(v) { const a = Math.abs(v); return a < 1 ? 0 : a < 3 ? 1 : a < 6 ? 2 : a < 10 ? 3 : 4; }
+function matrix(elId, metric, companies) {
+  const all = companies.flatMap(([t]) => firstPer(`TOOLS_${t}_${metric}`));
+  const qs = quarterRange("2025-Q1", all.map(r => qOf(r.e)).sort().at(-1));
+  const tbl = h("table", { class: "matrix" });
+  tbl.append(h("thead", {}, h("tr", {}, h("th", {}, ""), qs.map(q => h("th", { scope: "col" }, qShort(q))))));
+  const tb = h("tbody"); const srcRows = [];
+  for (const [t, name] of companies) {
+    const byQ = new Map(); for (const r of firstPer(`TOOLS_${t}_${metric}`)) byQ.set(qOf(r.e), r);
+    const tr = h("tr", {}, h("th", { class: "rowh", scope: "row" }, name));
+    for (const q of qs) {
+      const r = byQ.get(q), c = readCell(r);
+      if (!c) { tr.append(h("td", { class: "blank" }, "–")); continue; }
+      srcRows.push({ period: `${name} ${r.p}`, value: c.label, source: r.s, url: r.su });
+      const st = c.v == null ? 0 : stepOf(c.v), bg = st === 0 ? "--neu" : (c.v > 0 ? `--pos-${st}` : `--neg-${st}`);
+      const td = h("td", { tabindex: 0, style: `background:var(${bg});color:var(${st === 0 ? "--ink-2" : "--cell-ink-" + st})`, "aria-label": `${name} ${r.p}: ${c.text || c.label}` }, c.label);
+      bindTip(td, `${name} · ${r.p}`, [{ value: c.label, label: metric === "ACADGOV" ? "academic & government" : "pharma & biotech" }, ...(c.text ? [{ note: c.text }] : []), { note: r.s }]);
+      tr.append(td);
+    }
+    tb.append(tr);
+  }
+  tbl.append(tb);
+  document.getElementById(elId).replaceChildren(tbl);
+  return srcRows;
+}
+function scaleLegend(el) {
+  el.append(h("span", {}, "Decline"), " ");
+  for (const k of [4, 3, 2, 1]) el.append(h("i", { style: `background:var(--neg-${k})` }));
+  el.append(h("i", { style: "background:var(--neu)" }));
+  for (const k of [1, 2, 3, 4]) el.append(h("i", { style: `background:var(--pos-${k})` }));
+  el.append(" ", h("span", {}, "Growth"), h("span", { class: "gap" }), h("span", {}, "LSD/MSD/HSD = low/mid/high single digits, LDD = low double digits, HT = high teens. Up/Down = direction only."));
+}
+{
+  const acadRows = matrix("m-acad", "ACADGOV", [["TMO", "Thermo Fisher"], ["A", "Agilent"], ["WAT", "Waters"], ["BRKR", "Bruker"], ["RVTY", "Revvity"]]);
+  scaleLegend(document.getElementById("scale-1"));
+  document.getElementById("s-macad").append(h("span", {}, "Bruker cells describe US academic demand, which is still soft while Europe and China grow. Agilent's fiscal quarters end Jan/Apr/Jul/Oct."), dataDetails(acadRows, ["Company · period", "Reading", "Source"]));
+  const phRows = matrix("m-pharma", "PHARMA", [["TMO", "Thermo Fisher"], ["A", "Agilent"], ["WAT", "Waters"], ["RVTY", "Revvity"]]);
+  scaleLegend(document.getElementById("scale-2"));
+  document.getElementById("s-mpharma").append(h("span", {}, "Waters Q2 2026 covers its legacy analytical business only, after the BD Biosciences deal."), dataDetails(phRows, ["Company · period", "Reading", "Source"]));
+}
+{
+  const l = document.getElementById("l-guide");
+  l.append(h("span", {}, h("span", { class: "key-dot", style: "background:var(--series-1-soft)" }), "Earlier guide"),
+           h("span", {}, h("span", { class: "key-dot", style: "background:var(--series-1)" }), "Latest guide"));
+}
+/* Earlier midpoints come from the guidance history recorded in each row's value_text. */
+const GUIDES = [
+  ["WAT", "Waters", "TOOLS_WAT_GUIDE", 7.25, "May 2026: 6.5–8.0%"],
+  ["A", "Agilent", "TOOLS_A_GUIDE", 5.0, "Nov 2025: 4–6%"],
+  ["RVTY", "Revvity", "TOOLS_RVTY_GUIDE", 3.5, "Q1 2026 update: 3–4%"],
+  ["TMO", "Thermo Fisher", "TOOLS_TMO_GUIDE", 3.5, "After Q1 2026: ~3.5%"],
+  ["DHR", "Danaher", "TOOLS_DHR_GUIDE", 3.5, "Held at 3–4%"],
+  ["BRKR", "Bruker", "TOOLS_BRKR_GUIDE", 1.5, "Held at 1–2%"],
+  ["CRL", "Charles River", "CRO_CRL_GUIDANCE", -1.0, "Before Aug 2026: −1.5% to −0.5%"],
+];
+render(() => {
+  const el = document.getElementById("c-guide");
+  const W = Math.max(280, el.clientWidth), rowH = 30, m = { l: 96, r: 44, t: 8, b: 24 }, H = m.t + m.b + rowH * GUIDES.length;
+  const x = lin(-2, 10, m.l, W - m.r);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, height: H, role: "img", "aria-label": "FY2026 organic growth guidance, earlier versus latest" });
+  for (const t of [-2, 0, 2, 4, 6, 8, 10]) {
+    svg.append(s("line", { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, class: t === 0 ? "axisline" : "gridline" }));
+    svg.append(s("text", { x: x(t), y: H - 8, "text-anchor": "middle", class: "tick" }, (t > 0 ? "+" : "") + String(t).replace("-", "−") + "%"));
+  }
+  GUIDES.forEach(([t, name, id, prior, priorTxt], i) => {
+    const r = numeric(id).at(-1), cy = m.t + rowH * i + rowH / 2;
+    svg.append(s("text", { x: m.l - 10, y: cy + 4, "text-anchor": "end", class: "dlabel" }, name));
+    svg.append(s("line", { x1: x(prior), x2: x(r.v), y1: cy, y2: cy, strokeVar: "--axis", "stroke-width": 2 }));
+    svg.append(s("circle", { cx: x(prior), cy, r: 4.5, fillVar: "--series-1-soft", strokeVar: "--surface", "stroke-width": 2 }));
+    svg.append(s("circle", { cx: x(r.v), cy, r: 4.5, fillVar: "--series-1", strokeVar: "--surface", "stroke-width": 2 }));
+    svg.append(s("text", { x: x(Math.max(r.v, prior)) + 10, y: cy + 4, class: "dlabel strong" }, fmt(r.v, "pct", { signed: true, dp: 1 })));
+    const hit = s("rect", { x: m.l, y: cy - rowH / 2, width: W - m.l - m.r + 30, height: rowH, class: "hit bar", tabindex: 0, "aria-label": `${name}: latest ${fmt(r.v, "pct", { dp: 1 })}, earlier ${fmt(prior, "pct", { dp: 2 })}` });
+    svg.append(hit);
+    bindTip(hit, name, [{ value: fmt(r.v, "pct", { signed: true, dp: 1 }), label: "latest midpoint", color: "--series-1" }, { value: fmt(prior, "pct", { signed: true, dp: 2 }), label: "earlier", color: "--series-1-soft" }, { note: r.t || "" }, { note: "Earlier: " + priorTxt }]);
+  });
+  el.replaceChildren(svg);
+});
+{
+  const rs = GUIDES.map(([t, name, id, prior, priorTxt]) => { const r = numeric(id).at(-1); return { period: name, value: `${fmt(prior, "pct", { dp: 2 })} → ${fmt(r.v, "pct", { dp: 1 })}`, source: r.s, url: r.su }; });
+  document.getElementById("s-guide").append(h("span", {}, "Agilent's fiscal year ends in October. Revvity guides on a pro forma basis."), dataDetails(rs, ["Company", "Earlier → latest", "Source"]));
+}
+{
+  const box = document.getElementById("order-stats");
+  const b = numeric("TOOLS_BRKR_BOOKINGS").at(-1);
+  stat(box, fmt(b.v, "pct", { signed: true }), "Bruker instrument (BSI) bookings, organic, Q2 2026", "up from mid-single digits in Q3 2025; book-to-bill above 1", b.su, "Bruker 8-K");
+  const a = firstPer("TOOLS_A_BTB").at(-1);
+  stat(box, "≥1.0x", "Agilent instrument book-to-bill", "10th straight quarter with orders at or above revenue (fiscal Q3 2026)", a.su, "Agilent call");
+  const dh = firstPer("TOOLS_DHR_BIOPROCESS_ORDERS").at(-1);
+  stat(box, "+MT", "Danaher bioprocessing orders, Q2 2026", "mid-teens growth; over $100m of resin shipments pushed into 2027", dh.su, "Danaher release");
+}
+
+/* ---- Watchlist ---- */
+{
+  const items = [
+    ["Late Oct – early Nov 2026", "Q3 earnings season", "Does Charles River's book-to-bill hold above 1x? Does Bruker's promised second-half US academic recovery show up? Does Thermo Fisher's academic growth stay positive?", "https://ir.criver.com/"],
+    ["October 2026", "NIH FY2026 year-end obligations", "Did the late push get the FY2026 grant budget out the door, and how many new awards did it buy?", "https://www.aamc.org/about-us/mission-areas/biomedical-research/publication/tracking-nih-awards-fy-2026-1"],
+    ["October 2026", "PitchBook Q3 2026 biopharma report", "Is the $10bn-a-quarter venture pace holding, and is early-stage share recovering?", "https://pitchbook.com/news/reports"],
+    ["11 Dec 2026", "FY2027 continuing resolution expires", "Full-year NIH bill near the House's $47.3bn, or another CR that delays new awards again?", "https://www.congress.gov/crs-product/R49353"],
+  ];
+  const box = document.getElementById("watchlist");
+  for (const [when, what, why, url] of items)
+    box.append(h("div", { class: "item" }, h("span", { class: "when" }, when), h("span", { class: "what" }, what), h("span", { class: "why" }, why), h("span", { class: "s", style: "font-size:12px" }, link(url, "Where to look"))));
+}
+
+/* ---- All indicators ---- */
+{
+  const CH = [...new Set(D.latest.map(r => r.channel))];
+  document.getElementById("ind-intro").textContent =
+    `The newest reading for each of the ${D.latest.length} indicators with data. ${D.counts.catalog - D.counts.withData} more are catalogued and waiting for their first data (mostly the API-refreshed series). Change is mechanical: same unit, previous period.`;
+  let chan = "All", q = "";
+  try { chan = localStorage.getItem("ptm-chan") || "All"; } catch (e) {}
+  const chips = document.getElementById("chan-chips");
+  const mk = name => { const b = h("button", { class: "chip", type: "button", "aria-pressed": String(name === chan), id: "chip-" + name.replace(/\W+/g, "-").toLowerCase() }, name);
+    b.addEventListener("click", () => { chan = name; try { localStorage.setItem("ptm-chan", name); } catch (e) {} chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === b))); draw(); }); return b; };
+  chips.append(mk("All"), ...CH.map(mk));
+  if (!CH.includes(chan)) chan = "All";
+  const input = document.getElementById("ind-search");
+  input.addEventListener("input", () => { q = input.value.trim().toLowerCase(); draw(); });
+  function valueCell(r) {
+    const v = r.value === "" ? null : +r.value;
+    const signed = r.unit === "pct" && /(ORGANIC|ORGANIC_FY|ACADGOV|PHARMA|INSTR|BOOKINGS|CORE|LIFESCI|PACE|YOY|RETURN(_\w+)?|_LAB|GUIDE|GUIDANCE|HISTORY)$/.test(r.indicator_id);
+    const main = v == null ? null : fmt(v, r.unit, { signed });
+    return h("td", {}, main ? h("div", { class: "n", style: "font-weight:600" }, main) : null, r.value_text ? h("div", { class: "vt" }, r.value_text) : null);
+  }
+  function draw() {
+    const body = document.getElementById("ind-body"); body.replaceChildren();
+    let n = 0, lastCh = null;
+    for (const r of D.latest) {
+      if (chan !== "All" && r.channel !== chan) continue;
+      if (q && !(`${r.name} ${r.indicator_id} ${r.value_text}`.toLowerCase().includes(q))) continue;
+      if (r.channel !== lastCh) { body.append(h("tr", { class: "grp" }, h("td", { colspan: 7 }, r.channel))); lastCh = r.channel; }
+      const pv = r.prev_value === "" ? null : +r.prev_value, ch = r.change_vs_prev === "" ? null : +r.change_vs_prev;
+      body.append(h("tr", {},
+        h("td", {}, r.name || r.indicator_id, h("span", { class: "id" }, r.indicator_id)),
+        h("td", { class: "n" }, r.period),
+        valueCell(r),
+        h("td", { class: "n" }, pv == null ? "" : fmt(pv, r.unit), r.prev_period ? h("div", { class: "id" }, r.prev_period) : null),
+        h("td", { class: "n" }, ch == null ? "" : fmt(ch, r.unit === "pct" ? "pts" : r.unit, { signed: true })),
+        h("td", { class: "ch" }, r.read_as),
+        h("td", {}, link(r.source_url, "Source"))));
+      n++;
+    }
+    document.getElementById("ind-count").textContent = `${n} shown`;
+  }
+  draw();
+}
+
+/* ---- Re-render charts on resize ---- */
+let rt;
+new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => RENDER.forEach(fn => fn()), 120); }).observe(document.querySelector(".wrap"));
+</script>

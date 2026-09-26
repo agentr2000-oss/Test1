@@ -64,6 +64,7 @@ _Started 2026-09-25. Idea note: [`ideas/2026-09-25-preclinical-tools-spend-track
 | `auto/*.csv` | **API-refreshed data** from `tracker.py fetch`: FRED, NIH RePORTER, SEC XBRL, SEC Form D and ClinicalTrials.gov. Same columns as `observations.csv`. |
 | [`latest.csv`](latest.csv) | Newest reading per indicator, with the prior reading and the change. Rebuilt by `tracker.py latest`. The change column is mechanical (same unit, prior period), so check `notes` when a definition changes. `rows_same_period > 1` flags conflicting sources for the same period. |
 | [`tracker.py`](tracker.py) | Refresh / validate / summarize script. Python 3.9+, standard library only. |
+| [`dashboard/`](dashboard/) | **Preclinical Tools Monitor**: a one-page dashboard built from the CSVs (scorecard, channel charts, vendor heatmaps, policy log, searchable indicator table). Rebuild with `python dashboard/build_dashboard.py` after `tracker.py latest`. The published copy is [on claude.ai](https://claude.ai/artifact/Vm5GX93Kp5r1sWz3DmFAqS) (private to you until shared). |
 
 ### Observation schema (long format)
 
