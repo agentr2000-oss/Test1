@@ -7,7 +7,6 @@ This repository is a personal idea capture and planning tool. When the user desc
 - `ideas/` — Raw idea captures. One markdown file per idea.
 - `plans/` — Structured plans expanded from ideas.
 - `templates/` — Templates for ideas and plans.
-- `data/` — Datasets built out from ideas, one folder per idea slug.
 
 ## Conventions
 

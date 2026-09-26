@@ -14,7 +14,6 @@ A personal repo for capturing ideas on the go and spinning them into actionable 
 ideas/          Raw idea captures (one file per idea)
 plans/          Structured plans expanded from ideas
 templates/      Templates for ideas and plans
-data/           Datasets built out from ideas (e.g. data/preclinical-tools-spend/)
 .claude/commands/   Slash commands for Claude Code
 ```
 
