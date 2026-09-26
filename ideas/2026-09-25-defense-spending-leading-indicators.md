@@ -9,6 +9,8 @@ Defense money is opaque at the point it's spent, but it leaves a paper trail ups
 
 ## Notes
 
+**Now lives in the research repo:** the plan and source registry moved to [`trackers/defense_spend/`](https://github.com/agentr2000-oss/investment-research-workflow/tree/claude/test/trackers/defense_spend) on `claude/test` of investment-research-workflow (sources and grades: [`defense_spend_source_registry.md`](https://github.com/agentr2000-oss/investment-research-workflow/blob/claude/test/trackers/defense_spend_source_registry.md)).
+
 Original ask: brainstorm how to build a tracker of leading indicators for defense spending / defense contracts. Are there clever ways to do it, given this stuff tends to be quite opaque? Try the US as a pilot, and India as well. Look for interesting datasets that give good leading indicators.
 
 ### The core trick: treat it as a funnel with lags
@@ -96,6 +98,9 @@ Drivers → Intent → Authority/Approval → Market signals → Award → Cash 
 - The US/India pair is a nice test: one country with great structured data (so we can validate the method), one with messy data (to see whether the method still works).
 
 ## Related
+
+- Tracker plan (live): [investment-research-workflow `trackers/defense_spend/`](https://github.com/agentr2000-oss/investment-research-workflow/tree/claude/test/trackers/defense_spend)
+- Source registry with A–D grades: [`trackers/defense_spend_source_registry.md`](https://github.com/agentr2000-oss/investment-research-workflow/blob/claude/test/trackers/defense_spend_source_registry.md)
 
 Links checked 2026-09-25 against live search results. Most .gov hosts were blocked from direct fetch in the sandbox, so a few are marked ⚠. Lead times are rough guesses to be tested in backtests.
 
