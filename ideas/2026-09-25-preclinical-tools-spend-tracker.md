@@ -44,6 +44,16 @@ A tracker of leading indicators for preclinical tools and equipment spend (the p
     - Hiring and lab space are turning up: BioSpace R&D job postings +42% y/y, Boston lab searches 28 → 49 companies in a quarter.
     - Work is moving to China: WuXi AppTec's backlog +25% vs about +2% for Charles River; China is ~32% of global licensing deal value.
   - **Watch:** OMB's first BIOSECURE list of restricted Chinese biotechs, due by Dec 18.
+- Filings around preclinical work (2026-09-28). Preclinical studies themselves don't get filed anywhere until the IND at the end, so these read the paper trail around them:
+  - **USDA animal-use reports:** these give a volume read on drug safety studies, since that's where most monkeys and dogs go.
+    - Monkeys held or used in US research are roughly flat at ~105–114k a year (106k in FY2025).
+    - Dogs slid from 48k to 42k, and rabbits from 146k to 109k (FY2021 → FY2025).
+  - **Company filings that mention "IND-enabling" work:** counted from SEC full-text search each quarter. These fill in on the next `tracker.py fetch`.
+  - **Patent applications in drug and biotech classes:** a slow read, since they publish ~18 months after filing.
+    - US applicants' European filings fell ~10% in both pharma and biotech in 2025.
+    - Global biotech PCT filings were −3.9%.
+    - The monthly USPTO series needs a free PatentsView key.
+  - All the researched numbers came from search summaries, so they're still to be checked.
 
 ## Why it's interesting
 
@@ -64,3 +74,7 @@ Tools stocks and lab suppliers swing hard on funding cycles: the 2021 biotech bo
 - Early-stage biotech funding (J.P. Morgan via BioSpace): https://www.biospace.com/business/early-stage-biotechs-feel-the-squeeze-as-funding-favors-derisked-assets-jpm
 - Citeline pipeline shrinking: https://www.biospace.com/drug-development/pharma-pipeline-stalls-for-first-time-in-decades-citeline
 - China's share of licensing deals (Jefferies): https://www.fiercebiotech.com/biotech/china-biotechs-reshaping-us-biopharma-outlicensing-deals-rise-11-jefferies-report
+- USDA animal-use summaries (research facility annual reports): https://www.aphis.usda.gov/awa/research-facility-report/annual-summary
+- SEC EDGAR full-text search: https://www.sec.gov/edgar/search/efts-faq.html
+- PatentsView patent search API: https://search.patentsview.org/docs/
+- EPO patent filings from US applicants, 2025: https://www.prnewswire.com/news-releases/technology-dashboard-2025-us-remains-leading-country-of-origin-for-european-patent-applications-as-china-makes-gains-302722354.html
