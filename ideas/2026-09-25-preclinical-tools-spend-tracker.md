@@ -32,6 +32,18 @@ A tracker of leading indicators for preclinical tools and equipment spend (the p
     - San Diego lab vacancy from four brokers (all 25–28% countywide)
     - Inotiv's preclinical backlog ($152m, rebuilding since late 2024)
     - NIH/NSF budget requests vs what Congress actually gave
+- Private-side signals added (2026-09-28), since biotech and pharma money is where the upcycle is coming from:
+  - **From filings** (they fill in on the next `tracker.py fetch`):
+    - how many months of cash listed biotechs have left
+    - new life-science VC funds on Form D
+    - NIH small-business grants
+    - H-1B filings for lab scientists
+    - reagent and microscope imports
+  - **Researched now** (all from search summaries, so still to be checked):
+    - Early-stage money is thin: seed + Series A fell to $8.7bn in 2025 from $10.6bn, and most 2026 rounds went to companies already in the clinic. Citeline's drug pipeline shrank for the first time in ~30 years, led by fewer preclinical assets.
+    - Hiring and lab space are turning up: BioSpace R&D job postings +42% y/y, Boston lab searches 28 → 49 companies in a quarter.
+    - Work is moving to China: WuXi AppTec's backlog +25% vs about +2% for Charles River; China is ~32% of global licensing deal value.
+  - **Watch:** OMB's first BIOSECURE list of restricted Chinese biotechs, due by Dec 18.
 
 ## Why it's interesting
 
@@ -47,3 +59,8 @@ Tools stocks and lab suppliers swing hard on funding cycles: the 2021 biotech bo
 - Daily Treasury Statement (NIH cash actually paid out): https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/
 - Grants.gov (NIH and NSF funding notices): https://www.grants.gov/
 - Census trade data (primate and lab instrument imports): https://www.census.gov/data/developers/data-sets/international-trade.html
+- SEC XBRL frames API (listed biotechs' cash and R&D): https://www.sec.gov/search-filings/edgar-application-programming-interfaces
+- DOL H-1B disclosure data (lab scientist hiring): https://www.dol.gov/agencies/eta/foreign-labor/performance
+- Early-stage biotech funding (J.P. Morgan via BioSpace): https://www.biospace.com/business/early-stage-biotechs-feel-the-squeeze-as-funding-favors-derisked-assets-jpm
+- Citeline pipeline shrinking: https://www.biospace.com/drug-development/pharma-pipeline-stalls-for-first-time-in-decades-citeline
+- China's share of licensing deals (Jefferies): https://www.fiercebiotech.com/biotech/china-biotechs-reshaping-us-biopharma-outlicensing-deals-rise-11-jefferies-report
