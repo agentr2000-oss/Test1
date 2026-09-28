@@ -54,6 +54,18 @@ A tracker of leading indicators for preclinical tools and equipment spend (the p
     - Global biotech PCT filings were −3.9%.
     - The monthly USPTO series needs a free PatentsView key.
   - All the researched numbers came from search summaries, so they're still to be checked.
+- More leading indicators (2026-09-28), chosen because they move before money is committed:
+  - **From filings** (they fill in on the next `tracker.py fetch`):
+    - biotech 8-Ks mentioning strategic alternatives, layoffs, reverse mergers or at-the-market share sales (distress and fundraising)
+    - first-time biotech S-1/F-1 registrations (the IPO pipeline)
+    - ARPA-H awards
+    - FDA orphan designations (needs a manual export from FDA's database first)
+  - **Researched now** (all from search summaries, still to be checked):
+    - Lab instruments are splitting: Illumina instruments +31% in Q2 2026, but 10x Genomics −47% and Bio-Rad Life Science −5% (Bio-Rad blames academic demand).
+    - Alternatives to animal testing aren't taking off yet: Certara bookings +1%, Schrödinger software −10%.
+    - Labcorp's book-to-bill is above 1 like Charles River's, but Chinese preclinical labs are booming (Joinn backlog +61%).
+    - Why NIH success rates fell: more applications (R01 applications 37k → 42k) chasing the same money, and NCI's funding cutoff dropped to the 4th percentile.
+  - **Couldn't get:** FDA pre-IND meeting counts, which only appear in PDF reports.
 
 ## Why it's interesting
 
@@ -78,3 +90,9 @@ Tools stocks and lab suppliers swing hard on funding cycles: the 2021 biotech bo
 - SEC EDGAR full-text search: https://www.sec.gov/edgar/search/efts-faq.html
 - PatentsView patent search API: https://search.patentsview.org/docs/
 - EPO patent filings from US applicants, 2025: https://www.prnewswire.com/news-releases/technology-dashboard-2025-us-remains-leading-country-of-origin-for-european-patent-applications-as-china-makes-gains-302722354.html
+- FDA orphan designations database: https://www.accessdata.fda.gov/scripts/opdlisting/oopd/
+- EDGAR quarterly form index (S-1 filings): https://www.sec.gov/Archives/edgar/full-index/
+- Illumina Q2 2026 results: https://www.sec.gov/Archives/edgar/data/0001110803/000111080326000155/q226earningsrelease.htm
+- 10x Genomics Q2 2026 results: https://www.sec.gov/Archives/edgar/data/1770787/000162828026054273/txg-20260806xexx991.htm
+- Certara Q2 2026 results: https://www.sec.gov/Archives/edgar/data/1827090/000182709026000026/q22026earningsreleaseex99.htm
+- NCI payline at the 4th percentile (Cancer Letter): https://cancerletter.com/cancer-policy/20250725_5a/
